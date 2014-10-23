@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :firstname
       t.string :lastname
-      t.text :email
       t.string :password_digest
       t.text :avatar
       t.float :height
