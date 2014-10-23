@@ -22,7 +22,7 @@
 
 <p>
   <strong>Avatar:</strong>
-  <%= @user.avatar %>
+  <%= image_tag(@user.picture_url, :width => 600) if @user.picture.present? %>
 </p>
 
 <p>
