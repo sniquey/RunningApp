@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @location.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @location.longitude %>
+</p>
+
+<p>
+  <strong>Distance from last:</strong>
+  <%= @location.distance_from_last %>
+</p>
+
+<p>
+  <strong>Run:</strong>
+  <%= @location.run_id %>
+</p>
+
+<p>
+  <strong>Coin:</strong>
+  <%= @location.coin %>
+</p>
+
+<p>
+  <strong>Cummulative distance:</strong>
+  <%= @location.cummulative_distance %>
+</p>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

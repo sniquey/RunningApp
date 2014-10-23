@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coin_freq: 1.5
+  mushroom_freq: 1.5
+  turtle_freq: 1.5
+  name: MyString
+  description: MyText
+  coin_threshold: 1
+  image: MyText
+
+two:
+  coin_freq: 1.5
+  mushroom_freq: 1.5
+  turtle_freq: 1.5
+  name: MyString
+  description: MyText
+  coin_threshold: 1
+  image: MyText

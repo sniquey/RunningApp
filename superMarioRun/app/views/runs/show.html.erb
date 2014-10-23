@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coins:</strong>
+  <%= @run.coins %>
+</p>
+
+<p>
+  <strong>Calories:</strong>
+  <%= @run.calories %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @run.user_id %>
+</p>
+
+<p>
+  <strong>Mushrooms:</strong>
+  <%= @run.mushrooms %>
+</p>
+
+<p>
+  <strong>Turtles:</strong>
+  <%= @run.turtles %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @run.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @run.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>

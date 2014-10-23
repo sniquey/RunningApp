@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coin freq:</strong>
+  <%= @level.coin_freq %>
+</p>
+
+<p>
+  <strong>Mushroom freq:</strong>
+  <%= @level.mushroom_freq %>
+</p>
+
+<p>
+  <strong>Turtle freq:</strong>
+  <%= @level.turtle_freq %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @level.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @level.description %>
+</p>
+
+<p>
+  <strong>Coin threshold:</strong>
+  <%= @level.coin_threshold %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @level.image %>
+</p>
+
+<%= link_to 'Edit', edit_level_path(@level) %> |
+<%= link_to 'Back', levels_path %>
