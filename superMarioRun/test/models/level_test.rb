@@ -10,6 +10,8 @@
 #  description    :text
 #  coin_threshold :integer
 #  image          :text
+#  theme          :string(255)
+#  type           :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
 #

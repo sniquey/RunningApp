@@ -8,6 +8,8 @@ class CreateLevels < ActiveRecord::Migration
       t.text :description
       t.integer :coin_threshold
       t.text :image
+      t.string :theme
+      t.string :type
 
       t.timestamps
     end

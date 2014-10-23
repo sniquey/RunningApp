@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20141023043824) do
     t.text     "description"
     t.integer  "coin_threshold"
     t.text     "image"
+    t.string   "theme"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
