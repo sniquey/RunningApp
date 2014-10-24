@@ -6,7 +6,6 @@
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Email</th>
-      <th>Password digest</th>
       <th>Avatar</th>
       <th>Height</th>
       <th>Dob</th>
@@ -22,12 +21,11 @@
         <td><%= user.firstname %></td>
         <td><%= user.lastname %></td>
         <td><%= user.email %></td>
-        <td><%= user.password_digest %></td>
         <td><%= user.avatar %></td>
         <td><%= user.height %></td>
         <td><%= user.dob %></td>
         <td><%= user.runs_per_week %></td>
-        <td><%= user.lives %></td>
+        <td><%= user.total_lives %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

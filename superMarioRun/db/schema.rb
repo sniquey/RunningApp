@@ -56,8 +56,7 @@ ActiveRecord::Schema.define(version: 20141023105246) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
+    t.string   "name"
     t.string   "password_digest"
     t.text     "avatar"
     t.float    "height"

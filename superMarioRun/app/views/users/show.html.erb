@@ -16,13 +16,8 @@
 </p>
 
 <p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
   <strong>Avatar:</strong>
-  <%= image_tag user.picture_url(:thumb) if user.picture.present? %>
+  <%= image_tag @user.picture_url(:thumb) if @user.picture? %>
 </p>
 
 <p>
@@ -42,7 +37,7 @@
 
 <p>
   <strong>Lives:</strong>
-  <%= @user.lives %>
+  <%= @user.total_lives %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
