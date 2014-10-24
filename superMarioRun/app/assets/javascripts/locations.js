@@ -59,12 +59,13 @@ function getLocation (lat_long_time_object, counter) {
 			console.log("Longitude: "+lon);
 			console.log("Time is " + datetime);
 			var location = {
-				"location[lat]":lat,
-				"location[long]":lon,
-				"location[time]":datetime
+				"location[latitude]":lat,
+				"location[longitude]":lon,
+				"authenticity_token": $('meta[name="csrf-token"]').attr('content')
+				// "location[time]":datetime
 			};
 			//locations_array.push(location);
-			$.post('/locations', location)
+			$.post('/locations', location);
 
 
 			// Show the map

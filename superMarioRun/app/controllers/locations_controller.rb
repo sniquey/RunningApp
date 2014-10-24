@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @locations = Location.all
   end
@@ -17,10 +18,14 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    @location.distance_from_last
-    @location.cumulative_distance
-
+    @location.run_id = current_user.runs.last.id
+    @location.distance_from_last = current_user.runs.last.locations.last.calcDistance
+    @location.cumulative_distance = current_user.runs.last.locations.last.calcCumulativeDistance
     @location.save
+
+
+
+
 
     respond_to do |format|
       if @location.save

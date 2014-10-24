@@ -10,7 +10,10 @@ class RunsController < ApplicationController
   # GET /runs/new
   def new
     @run = Run.new
+    @run.user_id = current_user.id
+    @run.save
     
+    redirect_to new_location_path
     
   end
 
@@ -32,6 +35,7 @@ class RunsController < ApplicationController
         format.json { render json: @run.errors, status: :unprocessable_entity }
       end
     end
+    redirect_to new_location_path
   end
 
   # PATCH/PUT /runs/1
@@ -66,6 +70,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:coins, :calories, :user_id, :mushrooms, :turtles, :start_time, :end_time)
+      params.require(:run).permit(:total_coins, :calories, :user_id, :total_mushrooms, :total_turtles, :start_time, :end_time)
     end
 end

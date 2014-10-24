@@ -17,11 +17,11 @@
   <tbody>
     <% @runs.each do |run| %>
       <tr>
-        <td><%= run.coins %></td>
+        <td><%= run.total_coins %></td>
         <td><%= run.calories %></td>
         <td><%= run.user_id %></td>
-        <td><%= run.mushrooms %></td>
-        <td><%= run.turtles %></td>
+        <td><%= run.total_mushrooms %></td>
+        <td><%= run.total_turtles %></td>
         <td><%= run.start_time %></td>
         <td><%= run.end_time %></td>
         <td><%= link_to 'Show', run %></td>
