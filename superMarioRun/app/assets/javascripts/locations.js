@@ -1,15 +1,17 @@
 $(document).ready(function () {
 		var locationtracking;
+		// If you push the START YOUR RUN button
 		$("#starttracking").on('click', function() {
 			if (locationtracking) {
 				return; // timer is already running.
 			}
+
 			getLocation();
-			locationtracking = setInterval(getLocation, 5000);
-			// console.log('setInterval returned', locationtracking)
+			locationtracking = setInterval(getLocation, 1000);
 		});
-		
-		$('#stoptracking').on('click', function (lat_long_time_object) {
+
+		// If you push the STOP TRACKING button
+		$('#stoptracking').on('click', function () {
 			console.log('stopping', locationtracking);
 			clearInterval(locationtracking);
 			// reset the counter and the location tracking
@@ -19,11 +21,12 @@ $(document).ready(function () {
 
 });
 
-var lat_long_time_object;
-var counter = 0;
-var lat;
-var lon; 
-var datetime;
+var lat,
+		lon, 
+		datetime,
+		lat_long_time_object;
+
+var locations_array =[]; 
 
 function getLocation (lat_long_time_object, counter) {
 	// Check to see if the browser supports the GeoLocation API.
@@ -31,9 +34,17 @@ function getLocation (lat_long_time_object, counter) {
 		console.log("Got your location.");
 		// Get the location
 		var position;
+
+		var geoOptions = {
+			enableHighAccuracy: true
+		};
+
+		function geoError () {
+			alert("Sorry, you have failed that");
+		}
+
 		navigator.geolocation.getCurrentPosition(function(position) {
 			// Find the latitude, longitude and time of the GPS call
-			counter += 1;
 			lat = position.coords.latitude;
 			lon = position.coords.longitude;
 			
@@ -47,19 +58,22 @@ function getLocation (lat_long_time_object, counter) {
 			console.log("Latitude: "+ lat);
 			console.log("Longitude: "+lon);
 			console.log("Time is " + datetime);
-			// Saving this into the counter
-			// lat_long_time_object[counter] = {
-			// 	latitude: lat,
-			// 	longitude: lon,
-			// 	time: datetime
-			// }; 
+			var location = {
+				"location[lat]":lat,
+				"location[long]":lon,
+				"location[time]":datetime
+			};
+			//locations_array.push(location);
+			$.post('/locations', location)
+
+
 			// Show the map
-			showMap(lat, lon);
-		});
-		} else {
-	  // Print out a message to the user.
-	  // document.write('Your browser does not support GeoLocation');
-	  console.log("Your browser does not have Geolocation");
+			// showMap(lat, lon);
+
+			
+		}, geoError, geoOptions);
+	} else { // If geolocation doesn't work
+  	console.log("Your browser does not have Geolocation");
 	}
 }
 
@@ -67,23 +81,29 @@ function getLocation (lat_long_time_object, counter) {
 
 // Show the user's position on a Google map.
 function showMap(lat, lon) {
+	// console.log("Latitude: ", lat);
+	// console.log("Longtitude: ", lon);
 	// Create a LatLng object with the GPS coordinates.
-	var myLatLng = new google.maps.LatLng(lat, lon);
-
+	// var myLatLng = new google.maps.LatLng(lat, lon);
 	// Create the Map Options
   var mapOptions = {
-    zoom: 8,
-    center: myLatLng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-  // Generate the Map
-  var map = new google.maps.Map($('.map'), mapOptions);
+    zoom: 16,
+    center: {
+    	lat: lat,
+    	lng: lon
+    }
+    // mapTypeId: google.maps.MapTypeId.ROADMAP
+  },
+  map = new google.maps.Map( document.getElementById("map"), mapOptions);
 
   // Add a Marker to the Map
   var marker = new google.maps.Marker({
-      position: myLatLng,
+      position: {
+	    	lat: lat,
+	    	lng: lon
+      },
       map: map,
       title: 'Found you!'
   });
+  $("#map").css('height', '200px');
 }

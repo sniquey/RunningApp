@@ -1,20 +1,17 @@
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
-
-  # GET /runs
-  # GET /runs.json
   def index
     @runs = Run.all
   end
 
-  # GET /runs/1
-  # GET /runs/1.json
   def show
   end
 
   # GET /runs/new
   def new
     @run = Run.new
+    
+    
   end
 
   # GET /runs/1/edit

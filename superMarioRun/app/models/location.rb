@@ -17,4 +17,9 @@
 
 class Location < ActiveRecord::Base
 	belongs_to :run
+
+	def calcdistance 
+		# self.run.locations.last - run.locations.
+
+	end
 end

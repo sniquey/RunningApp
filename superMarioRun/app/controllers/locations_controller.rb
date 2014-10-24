@@ -24,7 +24,9 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
+    last_location = current_user.runs.last.locations.last
     @location = Location.new(location_params)
+    @location.distance_from_last = @location.latlong - last_location.latlong
 
     respond_to do |format|
       if @location.save
