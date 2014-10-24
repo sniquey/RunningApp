@@ -13,9 +13,9 @@
 #  turtle              :boolean
 #  created_at          :datetime
 #  updated_at          :datetime
-#
-require 'geocoder'
-require 'geokit' 
+# 
+# require 'geocoder'
+# require 'geokit' 
 
 class Location < ActiveRecord::Base
 	belongs_to :run
@@ -33,12 +33,15 @@ class Location < ActiveRecord::Base
 		else 
 			last_location = current_location
 		end
-		
+
 		## Calculating the location difference 
 		## TODO - Need to figure out why distance_to is not being recognised. Likely that current_location is not seen as an address
-		current_location_item = [current_location.latitude, current_location.longitude]
+		current_location_hash = {
+			"latitude" => current_location.latitude, 
+			"longitude" => current_location.longitude
+			};
 		last_location_item = [last_location.latitude, last_location.longitude]		
-		return current_location_item.distance_to(last_location_item) 
+		return current_location_item.distance_to([last_location.latitude, last_location.longitude]) 
 
 	end
 
