@@ -3,8 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
+      <th>name</th>
       <th>Email</th>
       <th>Avatar</th>
       <th>Height</th>
@@ -18,8 +17,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.firstname %></td>
-        <td><%= user.lastname %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.avatar %></td>
         <td><%= user.height %></td>
