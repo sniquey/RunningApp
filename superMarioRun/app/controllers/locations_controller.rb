@@ -1,32 +1,26 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
-  # GET /locations
-  # GET /locations.json
   def index
     @locations = Location.all
   end
 
-  # GET /locations/1
-  # GET /locations/1.json
   def show
   end
 
-  # GET /locations/new
   def new
     @location = Location.new
   end
 
-  # GET /locations/1/edit
   def edit
   end
 
-  # POST /locations
-  # POST /locations.json
   def create
-    last_location = current_user.runs.last.locations.last
     @location = Location.new(location_params)
-    @location.distance_from_last = @location.latlong - last_location.latlong
+    @location.distance_from_last
+    @location.cumulative_distance
+
+    @location.save
 
     respond_to do |format|
       if @location.save

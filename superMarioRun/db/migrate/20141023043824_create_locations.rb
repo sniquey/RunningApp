@@ -6,7 +6,7 @@ class CreateLocations < ActiveRecord::Migration
       t.float :distance_from_last
       t.integer :run_id
       t.boolean :coin
-      t.float :cummulative_distance
+      t.float :cumulative_distance
       t.boolean :mushroom
       t.boolean :turtle
 
