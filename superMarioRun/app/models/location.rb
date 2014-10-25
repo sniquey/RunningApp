@@ -13,9 +13,7 @@
 #  turtle              :boolean
 #  created_at          :datetime
 #  updated_at          :datetime
-# 
-# require 'geocoder'
-# require 'geokit' 
+#
 
 class Location < ActiveRecord::Base
 	belongs_to :run
@@ -24,6 +22,31 @@ class Location < ActiveRecord::Base
     # @location = Location.new(location_params)
     # @location.distance_from_last = @location.latlong - last_location.latlong
 
+    mushroomFrequency = { 	## Frequency of mushrooms per 
+    	1 => 1,
+    	2 => 4,
+    	3 => 6,
+    	4 => 8,
+    	5 => 10,
+    	6 => 12,
+    	7 => 14,
+    	8 => 16,
+    	9 => 18,
+    	10 => 20
+    }
+    coinFrequency = { 		## Frequency of coins per m
+    	1 => 10,
+    	2 => 20,
+    	3 => 30,
+    	4 => 40,
+    	5 => 50,
+    	6 => 60,
+    	7 => 70,
+    	8 => 80,
+    	9 => 90,
+    	10 => 100
+
+    }
 
 	def calcDistance 	# Calculates 'distance_from_last' i.e. distance between last location and second last location
 		## Finding the current and last location
@@ -66,4 +89,20 @@ class Location < ActiveRecord::Base
 		cumulative_distance_sum += self.calcDistance
 		return cumulative_distance_sum
 	end
+
+	def coinsPresent 
+		coin_counter = 0
+		user_level = current_user.level
+		if self.calcCumulativeDistance 
+		end
+	end
+
+	def mushroomPresent
+		
+	end
+
+	def turtlePresent
+
+	end
+	 
 end
