@@ -29,15 +29,15 @@ class LocationsController < ApplicationController
 
 
 
-    # respond_to do |format|
-    #   if @location.save
-    #     format.html { redirect_to @location, notice: 'Location was successfully created.' }
-    #     format.json { render :show, status: :created, location: @location }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @location.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @location.save
+        format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        format.json { render :show, status: :created, location: @location }
+      else
+        format.html { render :new }
+        format.json { render json: @location.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /locations/1

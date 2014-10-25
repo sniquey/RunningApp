@@ -12,9 +12,7 @@ class RunsController < ApplicationController
     @run = Run.new
     @run.user_id = current_user.id
     @run.save
-    
-    redirect_to new_location_path
-    
+        
   end
 
   # GET /runs/1/edit
@@ -35,7 +33,7 @@ class RunsController < ApplicationController
         format.json { render json: @run.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to new_location_path
+    redirect_to runs_path
   end
 
   # PATCH/PUT /runs/1
