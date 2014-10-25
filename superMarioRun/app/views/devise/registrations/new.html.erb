@@ -17,6 +17,11 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+  <a href="#newregistrationpart2">Next</a>
+
+
+ <div id="newregistrationpart2">
+
   <div class="field">
     <%= f.label :picture %><br>
     <%= f.file_field :picture %>
@@ -36,6 +41,8 @@
   </div>
 
   <div><%= f.submit "Sign up" %></div>
+
+</div>
 <% end %>
 
 <%= render "devise/shared/links" %>
