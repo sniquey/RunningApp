@@ -6,8 +6,8 @@ $(document).ready(function () {
 				return; // timer is already running.
 			}
 
-			getLocation();
-			locationtracking = setInterval(getLocation, 1000);
+			// getLocation();
+			locationtracking = setInterval(getLocation, 2500);
 		});
 
 		// If you push the STOP TRACKING button
@@ -66,7 +66,6 @@ function getLocation (lat_long_time_object, counter) {
 			};
 			//locations_array.push(location);
 			$.post('/locations', location);
-
 
 			// Show the map
 			// showMap(lat, lon);
