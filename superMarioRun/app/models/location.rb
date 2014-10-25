@@ -27,22 +27,22 @@ class Location < ActiveRecord::Base
 
 	def calcDistance 	# Calculates 'distance_from_last' i.e. distance between last location and second last location
 		## Finding the current and last location
-		current_location = self.run.locations.last
+		current_location = self
 		if self.run.locations.length > 1 
 			last_location = self.run.locations[self.run.locations.length - 2]
 		else 
-			last_location = current_location
+			last_location = self
 		end
+		# print "Current Location #{current_location}" 
 
 		## Calculating the location difference 
-		## TODO - Need to figure out why distance_to is not being recognised. Likely that current_location is not seen as an address
-		current_location_hash = {
-			"latitude" => current_location.latitude, 
-			"longitude" => current_location.longitude
-			};
-		last_location_item = [last_location.latitude, last_location.longitude]		
-		return current_location_item.distance_to([last_location.latitude, last_location.longitude]) 
-
+		radius = 6373000 	## The radius of the earth is 6373km
+		dlon = last_location.longitude - current_location.longitude
+		dlat = last_location.latitude - current_location.latitude
+		a = (Math.sin(dlat/2)**2) + (Math.cos(current_location.latitude) * Math.cos(last_location.latitude)*(Math.sin(dlon/2))**2 )
+		c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+		distance = radius*c 	
+		return distance 
 	end
 
 	def calcCumulativeDistance # Calculates 'cumulative_distance'

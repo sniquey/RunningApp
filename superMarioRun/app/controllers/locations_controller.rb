@@ -18,9 +18,11 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    @location.save
+
     @location.run_id = current_user.runs.last.id
-    @location.distance_from_last = current_user.runs.last.locations.last.calcDistance
-    @location.cumulative_distance = current_user.runs.last.locations.last.calcCumulativeDistance
+    @location.distance_from_last = @location.calcDistance
+    @location.cumulative_distance = @location.calcCumulativeDistance ## current_user.runs.last.locations.last
     @location.save
 
 
