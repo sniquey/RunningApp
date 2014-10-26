@@ -17,17 +17,11 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = Location.new(location_params)
-    @location.save
-
+    @location = Location.new(location_params)   
+    # @location.save 
     @location.run_id = current_user.runs.last.id
     @location.distance_from_last = @location.calcDistance
     @location.cumulative_distance = @location.calcCumulativeDistance ## current_user.runs.last.locations.last
-    @location.save
-
-
-
-
 
     respond_to do |format|
       if @location.save
@@ -57,7 +51,11 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.destroy
+    Location.each do |location|
+      location.destroy
+    end
+
+    # @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
       format.json { head :no_content }
