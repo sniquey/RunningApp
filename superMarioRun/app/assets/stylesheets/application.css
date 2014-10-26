@@ -47,4 +47,16 @@ th { border-bottom: 1px solid #DDD; }
 	color: white;
 }
 
+.content-block {
+	display: inline-block;
+	width: 40%;
+	margin: 10px;
+	background-color: grey;
+}
+
+.primary-block {
+	font-size: 1.8em;
+	text-align: center;
+}
+
 

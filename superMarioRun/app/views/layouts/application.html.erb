@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RatchetRails</title>
+  <title>Super Mario Run</title>
 
   <script>
 
@@ -45,6 +45,8 @@ function createsoundbite(sound){
 
 var mouseoversound=createsoundbite("whistle.ogg", "whistle.mp3")
 var clicksound=createsoundbite("click.ogg", "click.mp3")
+var mariomusic=createsoundbite("mario_08.wav")
+mariomusic.playclip();
 
 </script>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -68,6 +70,7 @@ var clicksound=createsoundbite("click.ogg", "click.mp3")
     <link href="stylesheets/ratchet-theme-ios.css" rel="stylesheet">
     <!-- Include the compiled Ratchet JS -->
     <script src="javascripts/ratchet.js"></script>
+    <link href="audios/mario_08.wav" rel="audio">
 </head>
 <body>
 
@@ -106,6 +109,13 @@ var clicksound=createsoundbite("click.ogg", "click.mp3")
   </a>
 </nav>
   </div>
+
+<audio controls>
+  <source src="public/mario_08.wav" type="audio/wav" autoplay="true">
+</audio>
+
+<%= audio_tag "public/mario_08.wav" %>
+
 
 
   <!-- Settings Modal -->
