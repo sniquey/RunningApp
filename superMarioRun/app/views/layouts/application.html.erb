@@ -86,6 +86,19 @@ mariomusic.playclip();
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
   <div class="content">
 
+    <audio id = "audiotag1" src = "assets/mario_08.wav" preload = "auto"></audio>
+<a href = "javascript:play_single_sound();">Play audio</a>
+<a href = "javascript:stop_single_sound();">Stop audio</a>
+<script type = "text/javascript">
+play_single_sound();
+function play_single_sound() {
+  document.getElementById('audiotag1').play();
+}
+function stop_single_sound() {
+  document.getElementById('audiotag1').pause();
+}
+</script>
+
  <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -110,11 +123,9 @@ mariomusic.playclip();
 </nav>
   </div>
 
-<audio controls>
-  <source src="public/mario_08.wav" type="audio/wav" autoplay="true">
-</audio>
 
-<%= audio_tag "public/mario_08.wav" %>
+
+
 
 
 
