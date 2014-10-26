@@ -1,19 +1,23 @@
-<h2>Log in</h2>
+<h2 class="content-padded">Log in</h2>
 
-<img src="/assets/Mario.png" class="mariologin">
+<img src="/assets/Mario.png" class="mariologin" class="content-padded">
+ 
+ <audio id="mariosound" class="audio_player" preload="true">
+    <source src="http://www.talkingwav.com/mario_zelda/mario_08.wav" type="audio/wav">
+</audio>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
+  <div class="content-padded"><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
+  <div class="content-padded"><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div class="content-padded"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
   <% end -%>
 
-  <div><%= f.submit "Log in" %></div>
+  <div class="content-padded"><%= f.submit "Log in" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

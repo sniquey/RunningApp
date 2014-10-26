@@ -23,3 +23,28 @@ th { border-bottom: 1px solid #DDD; }
 	width: 20%;
 	height: auto;
 }
+
+.main-tab .icon {
+	display: block;
+	position: relative;
+	left: 50%;
+	color: white;
+	transform: translateX(-50%);
+}
+
+.main-tab{
+	color: white;
+}
+.main-tab {
+	background-color: red;
+}
+
+.tab-text {
+	color: black;
+}
+
+.main-tab .tab-text {
+	color: white;
+}
+
+
