@@ -10,7 +10,7 @@ class RunsController < ApplicationController
   # GET /runs/new
   def new
     @run = Run.new
-    @run.user_id = current_user.id
+    @run.user_id = current_user.user_id
     @run.save
         
   end

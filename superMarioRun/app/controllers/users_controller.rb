@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+
   end
 
   # GET /users/1/edit
@@ -25,12 +26,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.level_id = 1
-    @user.total_lives = 3
-    # unless @user.runs_per_week
-    #   @user.runs_per_week = 1
-    # end
 
+    @user.level_id = 1  ## TODO - These params are not being saved. 
+    @user.total_lives = 3
+    @user.runs_per_week = 1
+
+    raise params
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -74,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest, :avatar, :height, :dob, :runs_per_week)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :height, :dob, :runs_per_week)
     end
 end
