@@ -1253,6 +1253,7 @@ select {
 .push-right:after {
   right: 15px;
   content: '\e826';
+
 }
 
 @font-face {
@@ -1260,8 +1261,8 @@ select {
   font-style: normal;
   font-weight: normal;
 
-  src: url("assets/ratchicons.eot");
-  src: url("assets/ratchicons.eot?#iefix") format("embedded-opentype"), url("assets/ratchicons.woff") format("woff"), url("assets/ratchicons.ttf") format("truetype"), url("assets/ratchicons.svg#svgFontName") format("svg");
+  src: url("ratchicons.eot");
+  src: url("ratchicons.eot?#iefix") format("embedded-opentype"), url("ratchicons.woff") format("woff"), url("ratchicons.ttf") format("truetype"), url("ratchicons.svg#svgFontName") format("svg");
 }
 .icon {
   display: inline-block;
