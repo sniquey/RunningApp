@@ -2,6 +2,7 @@ $(document).ready(function () {
 		var locationtracking;
 		// If you push the START YOUR RUN button
 		$("#starttracking").on('click', function() {
+			console.log("FUNCTION CLALLEd");
 			if (locationtracking) {
 				return; // timer is already running.
 			}
