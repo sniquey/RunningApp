@@ -2,6 +2,7 @@ $(document).ready(function () {
 		var locationtracking;
 		// If you push the START YOUR RUN button
 		$("#starttracking").on('click', function() {
+			console.log("FUNCTION CLALLEd");	
 			if (locationtracking) {
 				return; // timer is already running.
 			}
@@ -58,14 +59,51 @@ function getLocation (lat_long_time_object, counter) {
 			console.log("Latitude: "+ lat);
 			console.log("Longitude: "+lon);
 			console.log("Time is " + datetime);
+
 			var location = {
 				"location[latitude]":lat,
 				"location[longitude]":lon,
 				"authenticity_token": $('meta[name="csrf-token"]').attr('content')
 				// "location[time]":datetime
 			};
-			//locations_array.push(location);
-			$.post('/locations', location);
+			$.ajax('/locations', {
+				type: 'POST',
+				dataType: 'json',
+				data: location
+			}).done(function ( result ) {
+				// use result data here
+				console.log('make this result have the run data you care about', result);
+			// result should be the run data
+
+			// Pulling out run details from AJAX, based on the last location
+			// Need to ask AJAX to find the location.run and then manipulate that data 
+			// // Adding updated run details to the run page
+			
+			var resultLength = result.length;
+			var run_distance = result[resultLength - 1].cumulative_distance;
+			console.log("run dinstance " + run_distance);
+
+			// var run_distance = result.last.cumulative_distance;
+			var run_distance_html = '<p>' + run_distance + '</p>';
+			// console.log(run_distance_html);
+			$('.run_distance').html(run_distance_html);
+
+			// var run_time = (result.last.created_at - result.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
+			// var run_time_html = '<p>' + run_time 'seconds </p>';
+			// console.log(run_time_html)
+			// // $('.run_time').innerHTML(run_time_html);
+
+			// var run_pace = run_distance / run_time;
+			// var run_pace_html = '<p>' + run_pace + 'm/s </p>';
+			// console.log(run_pace_html)
+			// // $('.run_pace').innerHTML(run_pace_html);			
+
+
+			});
+
+
+			return;
+
 
 			// Show the map
 			// showMap(lat, lon);

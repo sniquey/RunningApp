@@ -22,32 +22,6 @@ class Location < ActiveRecord::Base
     # @location = Location.new(location_params)
     # @location.distance_from_last = @location.latlong - last_location.latlong
 
-    mushroomFrequency = { 	## Frequency of mushrooms per 
-    	1 => 1,
-    	2 => 4,
-    	3 => 6,
-    	4 => 8,
-    	5 => 10,
-    	6 => 12,
-    	7 => 14,
-    	8 => 16,
-    	9 => 18,
-    	10 => 20
-    }
-    coinFrequency = { 		## Frequency of coins per m
-    	1 => 10,
-    	2 => 20,
-    	3 => 30,
-    	4 => 40,
-    	5 => 50,
-    	6 => 60,
-    	7 => 70,
-    	8 => 80,
-    	9 => 90,
-    	10 => 100
-
-    }
-
 	def calcDistance 	# Calculates 'distance_from_last' i.e. distance between last location and second last location
 		## Finding the current and last location
 		current_location = self
@@ -90,11 +64,13 @@ class Location < ActiveRecord::Base
 		return cumulative_distance_sum
 	end
 
-	def coinsPresent 
-		coin_counter = 0
-		user_level = current_user.level
-		if self.calcCumulativeDistance 
-		end
+	def coinsPresent		
+		# user_level = current_user.level
+		# if self.calcCumulativeDistance > (user_level.coin_freq * self.run.coin_counter)
+		# 	self.coin = true
+		# 	self.run.coin_counter += 1
+		# end
+		# return self.coin , self.run.coin_counter
 	end
 
 	def mushroomPresent
