@@ -19,15 +19,18 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)   
     @location.run_id = current_user.runs.last.id
+    @run = current_user.runs.last
     @location.distance_from_last = @location.calcDistance
     @location.cumulative_distance = @location.calcCumulativeDistance ## current_user.runs.last.locations.last
-    # @location.mushrooms = @location.mushroomPresent
-    # @location.coins = @location.coinsPresent
+    @location.coin = @location.coinsPresent
+    @location.mushroom = @location.mushroomPresent
+    @location.turtle = @location.turtlePresent
 
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render :show, status: :created, location: @location }
+        #format.json { render :show, status: :created, location: @location }
+        format.json { render :json => @run }
       else
         format.html { render :new }
         format.json { render json: @location.errors, status: :unprocessable_entity }
@@ -71,6 +74,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:latitude, :longitude, :distance_from_last, :run_id, :coin, :cummulative_distance)
+      params.require(:location).permit(:latitude, :longitude, :distance_from_last, :run_id, :coin, :mushroom, :turtle, :cummulative_distance)
     end
 end

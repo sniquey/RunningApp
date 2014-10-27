@@ -64,11 +64,13 @@ class Location < ActiveRecord::Base
 		return cumulative_distance_sum
 	end
 
-	coin_counter = 0
-	def coinsPresent(coin_counter)
+	def coinsPresent		
 		user_level = current_user.level
-		if self.calcCumulativeDistance 
+		if self.calcCumulativeDistance > (user_level.coin_freq * self.run.coin_counter)
+			self.coin = true
+			self.run.coin_counter += 1
 		end
+		return self.coin, self.run.coin_counter
 	end
 
 	def mushroomPresent

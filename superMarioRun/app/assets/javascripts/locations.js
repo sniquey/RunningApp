@@ -2,7 +2,7 @@ $(document).ready(function () {
 		var locationtracking;
 		// If you push the START YOUR RUN button
 		$("#starttracking").on('click', function() {
-			console.log("FUNCTION CLALLEd");
+			console.log("FUNCTION CLALLEd");	
 			if (locationtracking) {
 				return; // timer is already running.
 			}
@@ -59,14 +59,42 @@ function getLocation (lat_long_time_object, counter) {
 			console.log("Latitude: "+ lat);
 			console.log("Longitude: "+lon);
 			console.log("Time is " + datetime);
+
 			var location = {
 				"location[latitude]":lat,
 				"location[longitude]":lon,
 				"authenticity_token": $('meta[name="csrf-token"]').attr('content')
 				// "location[time]":datetime
 			};
-			//locations_array.push(location);
-			$.post('/locations', location);
+			$.post('/locations', location).done(function (result) {
+				// use result data here
+				console.log('make this result have the run data you care about', result)
+			});
+
+
+			return;
+
+
+			// Pulling out run details from AJAX, based on the last location
+			// Need to ask AJAX to find the location.run and then manipulate that data 
+			// $.get('/runs', location);
+			// // Adding updated run details to the run page
+			// run_distance = location.run.last.cumulative_distance;
+			// run_distance_html = '<p>' + run_distance + '</p>';
+			// $('.run_distance').append(run_distance_html);
+
+			// run_time = (location.run.last.created_at - location.run.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
+			// run_time_html = '<p>' + run_time 'seconds </p>';
+			// $('.run_time').append(run_time_html);
+
+			// run_pace = run_distance / run_time;
+			// run_pace_html = '<p>' + run_pace + 'm/s </p>';
+			// $('.run_pace').append(run_pace_html);
+
+
+
+
+
 
 			// Show the map
 			// showMap(lat, lon);
