@@ -146,7 +146,8 @@ class Devise::RegistrationsController < DeviseController
   # The path used after sign up. You need to overwrite this method
   # in your own RegistrationsController.
   def after_sign_up_path_for(resource)
-    after_sign_in_path_for(resource)
+    redirect_to new_user_path
+    # after_sign_in_path_for(resource)
   end
 
   # The path used after sign up for inactive accounts. You need to overwrite
@@ -180,39 +181,3 @@ class Devise::RegistrationsController < DeviseController
 end
 
 
-#  
-#   def update_resource(resource, params)
-#     if current_user.provider == "facebook"
-#       params.delete("current_password")
-#       resource.update_without_password(params)
-#     else
-#       resource.update_with_password(params)
-#     end
-#   end
-
-#   private
-
-#   # check if we need password to update user data
-#   # ie if password or email was changed
-#   # extend this as needed
-#   def needs_password?(user, params)
-#     user.email != params[:user][:email] ||
-#       params[:user][:password].present? ||
-#       params[:user][:password_confirmation].present?
-#   end
-
-#   protected
-
-#   def after_sign_up_path_for(resource)
-#     '/test'
-#   end
-
-#   def configure_permitted_parameters
-#     devise_parameter_sanitizer.for(:sign_up) do |u|
-#       u.permit(:name, :email, :password, :password_confirmation)
-#     end
-#     devise_parameter_sanitizer.for(:account_update) do |u|
-#       u.permit(:name, :email, :password, :password_confirmation)
-#     end
-#   end
-# end

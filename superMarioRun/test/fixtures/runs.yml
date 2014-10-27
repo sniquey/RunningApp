@@ -2,16 +2,19 @@
 #
 # Table name: runs
 #
-#  id              :integer          not null, primary key
-#  total_coins     :float
-#  calories        :float
-#  user_id         :integer
-#  total_mushrooms :float
-#  total_turtles   :float
-#  start_time      :datetime
-#  end_time        :datetime
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id               :integer          not null, primary key
+#  total_coins      :float
+#  calories         :float
+#  user_id          :integer
+#  total_mushrooms  :float
+#  total_turtles    :float
+#  start_time       :datetime
+#  end_time         :datetime
+#  created_at       :datetime
+#  updated_at       :datetime
+#  coin_counter     :integer
+#  mushroom_counter :integer
+#  turtle_counter   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
