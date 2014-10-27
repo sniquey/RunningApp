@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates_confirmation_of :password # Shouldn't Devise handle this for us?
 	has_many :runs
 	belongs_to :level
 
