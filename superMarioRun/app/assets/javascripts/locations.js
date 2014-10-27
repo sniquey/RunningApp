@@ -66,34 +66,36 @@ function getLocation (lat_long_time_object, counter) {
 				"authenticity_token": $('meta[name="csrf-token"]').attr('content')
 				// "location[time]":datetime
 			};
-			$.post('/locations', location).done(function (result) {
+			$.ajax('/locations', {
+				type: 'POST',
+				dataType: 'json',
+				data: location
+			}).done(function ( result ) {
 				// use result data here
-				console.log('make this result have the run data you care about', result)
+				// console.log('make this result have the run data you care about', result);
+			// result should be the run data
+
+			// Pulling out run details from AJAX, based on the last location
+			// Need to ask AJAX to find the location.run and then manipulate that data 
+			// // Adding updated run details to the run page
+			
+			var run_distance = result.last.cumulative_distance;
+			var run_distance_html = '<p>' + run_distance + '</p>';
+			$('.run_distance').innerHTML(run_distance_html);
+
+			var run_time = (result.last.created_at - result.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
+			var run_time_html = '<p>' + run_time 'seconds </p>';
+			$('.run_time').innerHTML(run_time_html);
+
+			var run_pace = run_distance / run_time;
+			var run_pace_html = '<p>' + run_pace + 'm/s </p>';
+			$('.run_pace').innerHTML(run_pace_html);			
+
+
 			});
 
 
 			return;
-
-
-			// Pulling out run details from AJAX, based on the last location
-			// Need to ask AJAX to find the location.run and then manipulate that data 
-			// $.get('/runs', location);
-			// // Adding updated run details to the run page
-			// run_distance = location.run.last.cumulative_distance;
-			// run_distance_html = '<p>' + run_distance + '</p>';
-			// $('.run_distance').append(run_distance_html);
-
-			// run_time = (location.run.last.created_at - location.run.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
-			// run_time_html = '<p>' + run_time 'seconds </p>';
-			// $('.run_time').append(run_time_html);
-
-			// run_pace = run_distance / run_time;
-			// run_pace_html = '<p>' + run_pace + 'm/s </p>';
-			// $('.run_pace').append(run_pace_html);
-
-
-
-
 
 
 			// Show the map

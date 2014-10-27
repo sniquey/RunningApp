@@ -19,7 +19,7 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)   
     @location.run_id = current_user.runs.last.id
-    @run = current_user.runs.last
+    # @run = current_user.runs.last
     @location.distance_from_last = @location.calcDistance
     @location.cumulative_distance = @location.calcCumulativeDistance ## current_user.runs.last.locations.last
     @location.coin = @location.coinsPresent
@@ -30,7 +30,8 @@ class LocationsController < ApplicationController
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         #format.json { render :show, status: :created, location: @location }
-        format.json { render :json => @run }
+        format.json { render :json => @location.run.locations }
+        # render :json => @run
       else
         format.html { render :new }
         format.json { render json: @location.errors, status: :unprocessable_entity }
