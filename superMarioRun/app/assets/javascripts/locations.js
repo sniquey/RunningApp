@@ -72,24 +72,31 @@ function getLocation (lat_long_time_object, counter) {
 				data: location
 			}).done(function ( result ) {
 				// use result data here
-				// console.log('make this result have the run data you care about', result);
+				console.log('make this result have the run data you care about', result);
 			// result should be the run data
 
 			// Pulling out run details from AJAX, based on the last location
 			// Need to ask AJAX to find the location.run and then manipulate that data 
 			// // Adding updated run details to the run page
 			
-			var run_distance = result.last.cumulative_distance;
+			var resultLength = result.length;
+			var run_distance = result[resultLength - 1].cumulative_distance;
+			console.log("run dinstance " + run_distance);
+
+			// var run_distance = result.last.cumulative_distance;
 			var run_distance_html = '<p>' + run_distance + '</p>';
-			$('.run_distance').innerHTML(run_distance_html);
+			// console.log(run_distance_html);
+			$('.run_distance').html(run_distance_html);
 
-			var run_time = (result.last.created_at - result.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
-			var run_time_html = '<p>' + run_time 'seconds </p>';
-			$('.run_time').innerHTML(run_time_html);
+			// var run_time = (result.last.created_at - result.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
+			// var run_time_html = '<p>' + run_time 'seconds </p>';
+			// console.log(run_time_html)
+			// // $('.run_time').innerHTML(run_time_html);
 
-			var run_pace = run_distance / run_time;
-			var run_pace_html = '<p>' + run_pace + 'm/s </p>';
-			$('.run_pace').innerHTML(run_pace_html);			
+			// var run_pace = run_distance / run_time;
+			// var run_pace_html = '<p>' + run_pace + 'm/s </p>';
+			// console.log(run_pace_html)
+			// // $('.run_pace').innerHTML(run_pace_html);			
 
 
 			});
