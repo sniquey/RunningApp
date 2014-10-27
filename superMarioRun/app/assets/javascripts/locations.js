@@ -83,6 +83,7 @@ function getLocation (lat_long_time_object, counter) {
 			var run_distance = result[resultLength - 1].cumulative_distance;
 			var run_time = (Date.parse(result[resultLength - 1].created_at) - Date.parse(result[0].created_at))/1000;
 			var run_pace = (run_distance*1000) / (run_time*60*60);
+			var coins_alert = result[resultLength-1].coin;
 			console.log("run distance " + run_distance);
 			console.log("run time " + run_time);
 			console.log("run pace " + run_pace);
@@ -96,16 +97,16 @@ function getLocation (lat_long_time_object, counter) {
 			var run_pace_html = '<h3> Run pace: </h3> <h4>' + run_pace.toFixed(2) + 'km/hr </h4>';
 			$('.run_pace').html(run_pace_html);
 
-			// var run_time = (result.last.created_at - result.first.created_at)*2.5; 	// Location is tracked every 2.5 seconds
-			// var run_time_html = '<p>' + run_time 'seconds </p>';
-			// console.log(run_time_html)
-			// // $('.run_time').innerHTML(run_time_html);
+			var coins_alert_html = function(coins_alert) {
+				if (coins_alert == true) {
+					return '<img src="http://www.mariowiki.com/images/thumb/1/11/Mk7_coin.jpg/120px-Mk7_coin.jpg">';
+				} else {
+					return '<img/>'
+				}
 
-			// var run_pace = run_distance / run_time;
-			// var run_pace_html = '<p>' + run_pace + 'm/s </p>';
-			// console.log(run_pace_html)
-			// // $('.run_pace').innerHTML(run_pace_html);			
+			};
 
+			$('.coins_alert').html(coins_alert_html(coins_alert));
 
 			});
 
