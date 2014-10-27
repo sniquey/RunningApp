@@ -66,15 +66,23 @@ class Location < ActiveRecord::Base
 
 	def coinsPresent		
 		# Setting coin_counter at 1
-		if self.run.coin_counter == nil
-			self.run.coin_counter = 1
-		end
+		# if self.run.coin_counter == nil
+		# 	self.run.coin_counter = 1
+		# end
 		
 		user_level = Level.first #temporary fix until current_user.level
+		# binding.pry
 
-		if self.calcCumulativeDistance > (user_level.coin_freq * self.run.coin_counter)
+			lastCoinLocation = self.run.user.runs.last.locations.where(:coin => true).last
+
+			if lastCoinLocation
+				coin_distance_required = lastCoinLocation.cumulative_distance + user_level.coin_freq
+			else 												## Case if no previous coins ever
+				coin_distance_required = user_level.coin_freq
+			end
+			# binding.pry
+		if self.calcCumulativeDistance > coin_distance_required
 			self.coin = true
-			self.run.coin_counter += 1
 		else
 			self.coin = false
 		end
