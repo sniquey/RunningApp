@@ -1,9 +1,16 @@
-class RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+class Devise::RegistrationsController < DeviseController
+  before_filter :configure_permitted_parameters #, if: :devise_controller?
 
   # def after_sign_up_path_for(resource)
   #   '/test'
   # end
+
+  def new
+    self.resource = resource_class.new
+  end
+
+  def create
+  end
 
   def update
     binding.pry
@@ -38,32 +45,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
-  def create
-    build_resource(sign_up_params)
-
-    resource_saved = resource.save
-    yield resource if block_given?
-    if resource_saved
-      if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      end
-    else
-      clean_up_passwords resource
-      @validatable = devise_mapping.validatable?
-      if @validatable
-        @minimum_password_length = resource_class.password_length.min
-      end
-      respond_with resource
-    end
-  end
-
   private
 
   # check if we need password to update user data
@@ -76,6 +57,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   protected
+
+  def after_sign_up_path_for(resource)
+    '/test'
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|

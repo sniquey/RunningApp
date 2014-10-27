@@ -66,11 +66,11 @@ mariomusic.playclip();
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
 
     <!-- Include the compiled Ratchet CSS -->
-    <link href="stylesheets/ratchet.css" rel="stylesheet">
-    <link href="stylesheets/ratchet-theme-ios.css" rel="stylesheet">
+    <!-- <link href="stylesheets/ratchet.css" rel="stylesheet"> -->
+    <!-- <link href="stylesheets/ratchet-theme-ios.css" rel="stylesheet"> -->
     <!-- Include the compiled Ratchet JS -->
-    <script src="javascripts/ratchet.js"></script>
-    <link href="audios/mario_08.wav" rel="audio">
+    <!-- <script src="ratchet.js"></script>
+    <!-- <link href="audios/mario_08.wav" rel="audio"> -->
 </head>
 <body>
 
@@ -120,6 +120,7 @@ function stop_single_sound() {
   <a class="tab-item" href="#">
      <span class = "tab-text">History</span>
   </a>
+
 </nav>
   </div>
 
@@ -170,7 +171,9 @@ function stop_single_sound() {
         </div>
 
          <div class="content-padded">
-       <!--   <#% link_to 'Logout' logout_path(@user) %> -->
+          <a href="">
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </a>
         </div>
 
 

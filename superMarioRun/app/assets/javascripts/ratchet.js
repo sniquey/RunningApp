@@ -42,6 +42,8 @@
     var modal = getModal(event);
     if (modal) {
       if (modal && modal.classList.contains('modal')) {
+        console.clear();
+        console.log("THis is actually working");
         modal.classList.toggle('active');
       }
       event.preventDefault(); // prevents rewriting url (apps can still use hash values in url)
