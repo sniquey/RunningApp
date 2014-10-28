@@ -26,6 +26,7 @@
     <div id="objectPrint"></div>
     <div id="outputAcc"></div>
     <div id="outputGyro"></div>
+    <div id="step_counter"></div>
 </div>
 
 <script>
@@ -45,6 +46,11 @@ var accel_ay = [];
 var accel_az = [];
 var acceleration_squared;
 var accel_squared = [];
+var step_counter;
+var running_average;
+var deviation_from_average;
+var deviation_array = [];
+var comparison_value = 4;
 
   // Device motion stuff  
 if (window.DeviceMotionEvent==undefined) {
@@ -74,10 +80,28 @@ var output_xyz ;
 
             // Calculation of sqrt (x^2 + y^2 + z^2) to find absolute value of acceleration
             acceleration_squared = Math.sqrt( (event.accelerationIncludingGravity.x)*(event.accelerationIncludingGravity.x) + (event.accelerationIncludingGravity.y)*(event.accelerationIncludingGravity.y) + (event.accelerationIncludingGravity.z)*(event.accelerationIncludingGravity.z) ).toFixed(3) ;
-            accel_squared.unshift( acceleration_squared );
+
             // Adds to front of an array
+            accel_squared.unshift( acceleration_squared );
+
+            // Find the exponential moving average as a value
+            running_average = 10               //(accel_squared);
+
+            // Deviation from the average
+            deviation_from_average = Math.abs(acceleration_squared - running_average);
+            deviation_array.push(deviation_from_average);
+
+            if (comparison_value == 0.25 && deviation_from_average <= comparison_value) {
+                comparison_value = 4;
+                step_counter += 1;
+            } else if (comparison_value == 4 && deviation_from_average => comparison_value) {
+                comparison_value = 0.25;
+                step_counter += 1;
+            } 
 
             // TODO - figure out how to incorporate this array of accel_squared to read pedometer data
+            // Need to look for a max, min and brushing through the running_average value
+            // if (running_average[i] == acceleration_squared[i])
 
     };
 
@@ -97,7 +121,9 @@ var output_xyz ;
     setInterval(function() {
         // $('#objectPrint').html(JSON.stringify(accel_array));
         $('#outputAcc').html(output_xyz, new Date());
+        // $('#objectPrint').html(accel_squared);
         $('#objectPrint').html( JSON.stringify(accel_squared));
+        $('#step_counter').html(step_counter);
         }, 500);
 
 </script>
