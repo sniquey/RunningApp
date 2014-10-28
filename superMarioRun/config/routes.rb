@@ -89,11 +89,11 @@ Rails.application.routes.draw do
   get '/runs/new' => 'runs#new'
 
 
-  # resources :locations
+  resources :locations
 
   resources :runs
 
-  # resources :levels
+  resources :levels
 
   resources :users
 

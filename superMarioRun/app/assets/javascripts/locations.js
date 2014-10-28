@@ -1,19 +1,22 @@
+var startRunning = null;
+
 $(document).ready(function () {
 		var locationtracking;
 		// If you push the START YOUR RUN button
-		$("#starttracking").on('touchstart', function() {
+		startRunning = function() {
 			console.log("FUNCTION CALLED");	
 			if (locationtracking) {
 				return; // timer is already running.
 			}
-
 			// getLocation();
 			locationtracking = setInterval(getLocation, 2500);
-		});
+			$('html').addClass('running');
+		}
+		$('html').on('touchstart', '#startrun', startRunning);
 
 		// If you push the STOP TRACKING button
-		$('#stoptracking').on('touchstart', function () {
-			console.log('stopping', locationtracking);
+		$('html').on('touchstart', '#stoprun', function () {
+			console.log('stopping!!!', locationtracking);
 			clearInterval(locationtracking);
 			// reset the counter and the location tracking
 			locationtracking = null;
@@ -21,15 +24,15 @@ $(document).ready(function () {
 
 			// Show the map
 			showMap();
-
+			$('html').removeClass('running');
 		});
 
 });
 
 var lat,
-		lon, 
-		datetime,
-		lat_long_time_object;
+	lon, 
+	datetime,
+	lat_long_time_object;
 
 var locations_array =[]; 
 
