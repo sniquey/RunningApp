@@ -10,7 +10,7 @@ Level.destroy_all
 
 
 ## These will be pushed in
-level1 = Level.create(:id =>1, :name => 'Level 1', :coin_freq => 1, :mushroom_freq => 10, :turtle_freq => 100, 
+level1 = Level.create(:id =>1, :name => 'Level 1', :coin_freq => 10, :mushroom_freq => 25, :turtle_freq => 100, 
 				:description => 'Level 1 Run', :coin_threshold => 0)
 level2 = Level.create(:id => 2, :name => 'Level 2', :coin_freq => 2, :mushroom_freq => 20, :turtle_freq => 200, 
 				:description => 'Level 2 Run', :coin_threshold => 100)

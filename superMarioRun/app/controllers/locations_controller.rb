@@ -3,7 +3,8 @@ class LocationsController < ApplicationController
 
 
   def index
-    @locations = Location.all
+    @locations = current_user.runs.last.locations
+    render :json => @locations
   end
 
   def show
@@ -19,7 +20,6 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)   
     @location.run_id = current_user.runs.last.id
-    # @run = current_user.runs.last
     @location.distance_from_last = @location.calcDistance
     @location.cumulative_distance = @location.calcCumulativeDistance ## current_user.runs.last.locations.last
     @location.coin = @location.coinsPresent

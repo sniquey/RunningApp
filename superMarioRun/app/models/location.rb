@@ -65,16 +65,45 @@ class Location < ActiveRecord::Base
 	end
 
 	def coinsPresent		
-		# user_level = current_user.level
-		# if self.calcCumulativeDistance > (user_level.coin_freq * self.run.coin_counter)
-		# 	self.coin = true
-		# 	self.run.coin_counter += 1
-		# end
-		# return self.coin , self.run.coin_counter
+
+		user_level = Level.first #temporary fix until current_user.level
+
+			lastCoinLocation = self.run.user.runs.last.locations.where(:coin => true).last
+
+			if lastCoinLocation
+				coin_distance_required = lastCoinLocation.cumulative_distance + user_level.coin_freq
+			else 												## Case if no previous coins ever
+				coin_distance_required = user_level.coin_freq
+			end
+
+		if self.calcCumulativeDistance > coin_distance_required
+			self.coin = true
+		else
+			self.coin = false
+		end
+
+		return self.coin
 	end
 
 	def mushroomPresent
-		
+
+		user_level = Level.first #temporary fix until current_user.level
+
+			lastMushroomLocation = self.run.user.runs.last.locations.where(:mushroom => true).last
+
+			if lastMushroomLocation
+				mushroom_distance_required = lastMushroomLocation.cumulative_distance + user_level.mushroom_freq
+			else 												## Case if no previous coins ever
+				mushroom_distance_required = user_level.mushroom_freq
+			end
+
+		if self.calcCumulativeDistance > mushroom_distance_required
+			self.mushroom = true
+		else
+			self.mushroom = false
+		end
+
+		return self.mushroom		
 	end
 
 	def turtlePresent

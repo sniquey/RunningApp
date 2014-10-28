@@ -180,4 +180,7 @@ class Devise::RegistrationsController < DeviseController
   end
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb9088b1976c462b129f3d2f4fefbbd28ae9f048
