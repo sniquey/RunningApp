@@ -73,8 +73,9 @@ var output_xyz ;
             // accel_az.push(event.accelerationIncludingGravity.z);
 
             // Calculation of sqrt (x^2 + y^2 + z^2) to find absolute value of acceleration
-            acceleration_squared = Math.sqrt( (event.accelerationIncludingGravity.x)*(event.accelerationIncludingGravity.x) + (event.accelerationIncludingGravity.y)*(event.accelerationIncludingGravity.y) + (event.accelerationIncludingGravity.z)*(event.accelerationIncludingGravity.z) ) ;
-            accel_squared.push( acceleration_squared );
+            acceleration_squared = Math.sqrt( (event.accelerationIncludingGravity.x)*(event.accelerationIncludingGravity.x) + (event.accelerationIncludingGravity.y)*(event.accelerationIncludingGravity.y) + (event.accelerationIncludingGravity.z)*(event.accelerationIncludingGravity.z) ).toFixed(3) ;
+            accel_squared.unshift( acceleration_squared );
+            // Adds to front of an array
 
             // TODO - figure out how to incorporate this array of accel_squared to read pedometer data
 
@@ -96,7 +97,7 @@ var output_xyz ;
     setInterval(function() {
         // $('#objectPrint').html(JSON.stringify(accel_array));
         $('#outputAcc').html(output_xyz, new Date());
-        $('#objectPrint').html("Acceleration ", JSON.stringify(accel_squared));
+        $('#objectPrint').html( JSON.stringify(accel_squared));
         }, 500);
 
 </script>
