@@ -1,0 +1,52 @@
+<!-- Mapping stuff -->
+<script src="/assets/Chart.js"></script>
+
+    <canvas id="myChart" width="400" height="400"> </canvas>
+
+<script>
+
+        var test_labels = [];
+        for (var i = 0; i < accel_time.length; i++) {
+            test_labels.push(i);
+        }
+
+        // Testing graphs
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var data = {
+            labels: test_labels, //accel_time,
+            datasets: [
+                {
+                    label: "X-axis",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: accel_ax // array of values [ x , x, x]
+                },
+                {
+                    label: "Y-axis",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: accel_ay
+                },
+                {
+                    label: "Z-axis",
+                    fillColor: "rgba(200,0,200,0.2)",
+                    strokeColor: "rgba(200,0,200,1)",
+                    pointColor: "rgba(200,0,200,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightSoke: "rgba(151,187,205,1)",
+                    data: accel_az
+                }
+            ]
+        };
+        var myLineChart = new Chart(ctx).Line(data);
+
+</script>
