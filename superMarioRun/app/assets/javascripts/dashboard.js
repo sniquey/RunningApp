@@ -12,4 +12,19 @@ $(document).ready( function () {
 		mario_theme.play();
 	}
 	play_mario();
+
+
+	// var stop = $('#startrun');
+	// stop.toggle( showOrHide );
+	// if ( showOrHide === true ) {
+ // 	$stop.show();
+	// } else if ( showOrHide === false ) {
+ //  	$stop.hide();
+	// }
+
+	$( "#startrun" ).click(function() {
+  $( "#startrun" ).toggle();
 });
+
+});
+

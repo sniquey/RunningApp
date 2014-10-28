@@ -49,7 +49,7 @@ def defaults
     self.total_lives = 3
     self.avatar = ""
     self.height = 1.70
-    self.dob = Date.parse(11/11/1990)
+    self.dob = Date.parse("11/11/1990")
     self.runs_per_week = 3
   end
 end
