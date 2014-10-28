@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     
   }
 
+  get '/testing' => 'runs#testing'
+  
   # get '/dashboard' => 'home#dashboard', :as => 'user_root'
 
 	# devise_for :user do
