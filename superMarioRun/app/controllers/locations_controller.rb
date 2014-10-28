@@ -3,7 +3,8 @@ class LocationsController < ApplicationController
 
 
   def index
-    @locations = Location.all
+    @locations = current_user.runs.last.locations
+    render :json => @locations
   end
 
   def show
