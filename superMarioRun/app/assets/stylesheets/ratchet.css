@@ -524,6 +524,7 @@ input[type="button"] {
 
 .bar-nav {
   top: 0;
+  background-color: red;
 }
 
 .title {

@@ -15,6 +15,7 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(http://fonts.googleapis.com/css?family=Dosis);
 
 #stoprun {
 	display: none;
@@ -70,7 +71,6 @@ th { border-bottom: 1px solid #DDD; }
 	display: inline-block;
 	width: 40%;
 	margin: 10px;
-	background-color: grey;
 }
 
 .primary-block {
@@ -80,6 +80,27 @@ th { border-bottom: 1px solid #DDD; }
 
 .coin {
 	height: 100px;
+}
+
+.title {
+	margin-left: 10px;
+}
+
+
+.center-links {
+	display: block;
+	text-align: center;
+	font-family: 'Dosis', sans-serif;
+}
+.center-links-container {
+	width: 100%;
+}
+
+.supermariotitle {
+	height: 50px;
+	position: absolute;
+	top: 5px;
+	left: 40px;
 }
 
 

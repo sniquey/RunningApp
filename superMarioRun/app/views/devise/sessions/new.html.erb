@@ -1,20 +1,42 @@
-<h2 class="content-padded">Log in</h2>
+<audio src="/assets/loginsound.mp3" autoplay>
+</audio>
 
-<img src="/assets/Mario-2.gif" class="mariologin" class="content-padded">
- 
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="content-padded"><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+<div class="loginpage">
+	<!-- <h2 class="content-padded">Start</h2> -->
 
-  <div class="content-padded"><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+	<div class="outerloginscreen">
+		<div class="loginscreen">
+		<!-- <img src="/assets/Mario.png" class="mariologin-jump" class="content-padded"> -->
+		</div>
+	</div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="content-padded"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+	<div class="gameconsole">
+		
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		  <div class="loginemail"><%= f.label :email, :class => 'emaillabel' %></div>
+		  <%= f.email_field :email, autofocus: true, :class => 'loginemail' %>
 
-  <div class="content-padded"><%= f.submit "Log in" %></div>
-<% end %>
+		  <div class="loginpassword"><%= f.label :password %></div>
+		    <%= f.password_field :password, autocomplete: "off" %>
 
-<%= render "devise/shared/links" %>
+		  <% if devise_mapping.rememberable? -%>
+		    <div class="loginremember"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		  <% end -%>
+
+		  <div class="mario-start"><%= f.submit "Start" %></div>
+		<% end %>
+
+		<div id="cross"></div>
+
+		<div class="links">
+		<%= render "devise/shared/links" %>
+		</div>
+
+		<div class="pretendbuttons">
+			<div class="circlebutton1"></div>
+			<div class="circlebutton2"></div>
+		</div>
+
+	</div>
+</div>
