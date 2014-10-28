@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Move the Ball</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
-<script src="http://debug.phonegap.com/target/target-script-min.js#accelerometer"></script>
+<!-- <script src="http://debug.phonegap.com/target/target-script-min.js#accelerometer"></script> -->
 
 <style>
 #no {
@@ -30,7 +30,6 @@
 
 <script>
 
-
 // Position Variables
 var x = 0;
 var y = 0;
@@ -44,6 +43,7 @@ var accel_time = [];
 var accel_ax = [];
 var accel_ay = [];
 var accel_az = [];
+var acceleration_squared;
 var accel_squared = [];
 
   // Device motion stuff  
@@ -67,14 +67,14 @@ var output_xyz ;
                 'az': event.accelerationIncludingGravity.z,
                 'datetime': new Date()
             });
-            accel_time.push(new Date());
-            accel_ax.push(event.accelerationIncludingGravity.x);
-            accel_ay.push(event.accelerationIncludingGravity.y);
-            accel_az.push(event.accelerationIncludingGravity.z);
+            // accel_time.push(new Date());
+            // accel_ax.push(event.accelerationIncludingGravity.x);
+            // accel_ay.push(event.accelerationIncludingGravity.y);
+            // accel_az.push(event.accelerationIncludingGravity.z);
 
             // Calculation of sqrt (x^2 + y^2 + z^2) to find absolute value of acceleration
-            var acceleration_squared = Math.sqrt(Math.pow(event.accelerationIncludingGravity.x),2)+Math.pow((event.accelerationIncludingGravity.y),2) + Math.pow(event.accelerationIncludingGravity.z),2));
-            accel_squared.push(acceleration_squared);
+            acceleration_squared = Math.sqrt( (event.accelerationIncludingGravity.x)*(event.accelerationIncludingGravity.x) + (event.accelerationIncludingGravity.y)*(event.accelerationIncludingGravity.y) + (event.accelerationIncludingGravity.z)*(event.accelerationIncludingGravity.z) ) ;
+            accel_squared.push( acceleration_squared );
 
             // TODO - figure out how to incorporate this array of accel_squared to read pedometer data
 
@@ -96,6 +96,7 @@ var output_xyz ;
     setInterval(function() {
         // $('#objectPrint').html(JSON.stringify(accel_array));
         $('#outputAcc').html(output_xyz, new Date());
+        $('#objectPrint').html("Acceleration ", JSON.stringify(accel_squared));
         }, 500);
 
 </script>
