@@ -42,18 +42,7 @@
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
   <div class="content">
 
-    <audio id = "audiotag1" src = "assets/mario_08.wav" preload = "auto"></audio>
-    <a href = "javascript:play_single_sound();">Play audio</a>
-    <a href = "javascript:stop_single_sound();">Stop audio</a>
-<script type = "text/javascript">
-play_single_sound();
-function play_single_sound() {
-  document.getElementById('audiotag1').play();
-}
-function stop_single_sound() {
-  document.getElementById('audiotag1').pause();
-}
-</script>
+
 
  <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -67,19 +56,17 @@ function stop_single_sound() {
   <a class="tab-item active" href = "/">
     <span class = "tab-text">Dashboard</span>
   </a>
-  <a class="tab-item main-tab"  href="/runs/new">
-
-
+  <a id="startrun" class="tab-item main-tab"  href="/runs/new">
     <div class = "icon icon-play"></div>
     <span class = "tab-text">Start Run</span>
-  </a>
+ </a> 
+
   <a class="tab-item" href="#">
      <span class = "tab-text">History</span>
   </a>
 
 </nav>
   </div>
-
 
 
 
@@ -126,7 +113,8 @@ function stop_single_sound() {
           <button class="btn btn-positive btn-block">Save settings</button>
         </div>
 
-         <div class="content-padded">
+        
+          <button id = "logout" class="btn btn-positive btn-block logout" href='/users/logout'>Logout</button>
           <a href="">
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           </a>

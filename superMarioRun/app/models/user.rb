@@ -41,6 +41,20 @@ class User < ActiveRecord::Base
 	belongs_to :level
 
 
+  after_initialize :defaults
+
+def defaults
+   unless persisted?
+    self.level_id = 1
+    self.total_lives = 3
+    self.avatar = ""
+    self.height = 1.70
+    self.dob = Date.parse("11/11/1990")
+    self.runs_per_week = 3
+  end
+end
+
+
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user

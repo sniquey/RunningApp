@@ -146,7 +146,8 @@ class Devise::RegistrationsController < DeviseController
   # The path used after sign up. You need to overwrite this method
   # in your own RegistrationsController.
   def after_sign_up_path_for(resource)
-    after_sign_in_path_for(resource)
+    redirect_to new_user_path
+    # after_sign_in_path_for(resource)
   end
 
   # The path used after sign up for inactive accounts. You need to overwrite
@@ -179,3 +180,7 @@ class Devise::RegistrationsController < DeviseController
   end
 end
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> cb9088b1976c462b129f3d2f4fefbbd28ae9f048
