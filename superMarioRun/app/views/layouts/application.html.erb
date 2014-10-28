@@ -32,10 +32,12 @@
 
   <!-- Make sure all your bars are the first things in your <body> -->
  <header class="bar bar-nav">
-  <button class="btn pull-left">
-    Left
-  </button>
+<!--   <span class="pull-left">
+  <img src="/assets/Mario-2.gif" class="mariologin" class="content-padded">
+  </span> -->
+ <% if @user == current_user %>
     <a class="icon icon-bars pull-right" href="#settingsModal"></a>
+    <% end %>
   <h1 class="title">Super Mario Run</h1>
 </header>
 

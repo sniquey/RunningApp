@@ -1,30 +1,35 @@
+<% if current_user.level_id == 1 %>
+<link type="text/stylesheet" href="assets/level1.css">
+<% else %>
+<% end %>
+<div class="dashboard">
+	    <button id = "play-sound">Play audio</button>
+	    <button id = "stop-sound">Stop audio</button>
 
-    <button id = "play-sound">Play audio</button>
-    <button id = "stop-sound">Stop audio</button>
 
+	<div class = "primary-block content-block">
+			<div>Level</div>
+			<div><%= current_user.level_id %></div>
+	</div>
 
-<div class = "primary-block content-block">
-		<div>Level</div>
-		<div><%= current_user.level_id %></div>
-</div>
+	<div class = "primary-block content-block">
+			<div><img class="coin" src="assets/coin.png" alt=""></div>
+			<div>coins</div>
+	</div>
 
-<div class = "primary-block content-block">
-		<div><img class="coin" src="assets/coin.png" alt=""></div>
-		<div>coins</div>
-</div>
+	<div class = "content-block">
+			<strong>Total distance</strong>
+	</div>
 
-<div class = "content-block">
-		<strong>Total distance</strong>
-</div>
+	<div class = "content-block">
+			<div>30km</div>
+	</div>
 
-<div class = "content-block">
-		<div>30km</div>
-</div>
-
-<div class = "content-block">
-		<strong>Total time run</strong>
-</div>
-<div class = "content-block">
-		<div>00:00:00</div>
+	<div class = "content-block">
+			<strong>Total time run</strong>
+	</div>
+	<div class = "content-block">
+			<div>00:00:00</div>
+	</div>
 </div>
 

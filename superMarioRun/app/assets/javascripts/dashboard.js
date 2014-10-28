@@ -11,8 +11,8 @@ $(document).ready( function () {
 	}
 	play_mario();
 
-	// stop.addEventListener("touchstart", pause_mario, false);
-	// start.addEventListener("touchstart", play_mario, false);
+	stop.addEventListener("touchstart", pause_mario, false);
+	start.addEventListener("touchstart", play_mario, false);
 
 	// var currentLocation = location.href, runActive;
 
