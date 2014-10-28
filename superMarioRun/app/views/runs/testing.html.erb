@@ -31,6 +31,7 @@
     Your browser does not support Device Orientation and Motion API. Try this sample with iPhone, iPod or iPad with iOS 4.2+.    
     </div>
 
+    <div id="objectPrint"></div>
     <div id="outputAcc"></div>
     <div id="outputGyro"></div>
 </div>
@@ -41,59 +42,60 @@
 var x = 0;
 var y = 0;
 var z = 0;
+var time;
 
 // Speed - Velocity
 var vx = 0;
 var vy = 0;
 var vz = 0;
 
-// Acceleration
-var ax = 0;
-var ay = 0;
-var az = 0;
+// // Acceleration
+// var ax = 0;
+// var ay = 0;
+// var az = 0;
 
+var accel_array = [];
 
 if (window.DeviceMotionEvent==undefined) {
     document.getElementById("no").style.display="block";
     document.getElementById("yes").style.display="none";
 
 } else {
+     
+var output_xyz ;
+    // Print out information about the accelerometer
     window.ondevicemotion = function(event) {
-        ax = event.accelerationIncludingGravity.x;
-        ay = event.accelerationIncludingGravity.y;
-        az = event.accelerationIncludingGravity.z;
-        var output_xyz = "<h3>Accelerometer data</h3> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) ;
+            ax = event.accelerationIncludingGravity.x;
+            ay = event.accelerationIncludingGravity.y;
+            az = event.accelerationIncludingGravity.z;
+            output_xyz = "<h5> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) + "</h5>";
+            
+            accel_array.push({
+                'ax': event.accelerationIncludingGravity.x,
+                'ay': event.accelerationIncludingGravity.y,
+                'az': event.accelerationIncludingGravity.z,
+                'datetime': new Date()
+            });
 
-        $('#outputAcc').html(output_xyz);
 
     };
 
-    window.ondeviceorientation = function(event) {
-        a_alpha = event.alpha;
-        a_beta = event.beta;
-        a_gamma = event.gamma;
+    
+    // Print out information about the gyroscope
+    // window.ondeviceorientation = function(event) {
+    //     a_alpha = event.alpha;
+    //     a_beta = event.beta;
+    //     a_gamma = event.gamma;
 
-        var output_gyro = "<h3>Gyroscope data</h3> Alpha: " + event.alpha.toFixed(2) + " Beta: " + event.beta.toFixed(2) + " Gamma: " + event.gamma.toFixed(2);
-        $('#outputGyro').html(output_gyro);
-    };
+    //     var output_gyro = "<h3>Gyroscope data</h3> Alpha: " + event.alpha.toFixed(2) + " Beta: " + event.beta.toFixed(2) + " Gamma: " + event.gamma.toFixed(2);
+    //     $('#outputGyro').html(output_gyro);
+    // };
 
-    setInterval(function() {
-        vy = vy + -(ay);
-        vx = vx + ax;
-
-        var ball = document.getElementById("ball");
-        y = parseInt(y + vy * vMultiplier);
-        x = parseInt(x + vx * vMultiplier);
-        
-        if (x<0) { x = 0; vx = 0; }
-        if (y<0) { y = 0; vy = 0; }
-        if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = 0; }
-        if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = 0; }
-        
-        ball.style.top = y + "px";
-        ball.style.left = x + "px";
-    }, delay);
 } 
+    setInterval(function() {
+        // $('#objectPrint').html(JSON.stringify(accel_array));
+        $('#outputAcc').html(output_xyz, new Date());
+        }, 1000);
 
 </script>
 
