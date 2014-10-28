@@ -5,6 +5,8 @@
 <title>Move the Ball</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
 <script src="http://debug.phonegap.com/target/target-script-min.js#accelerometer"></script>
+<script src="/assets/Chart.js"></script>
+
 <style>
 #no {
     display: none;  
@@ -24,7 +26,10 @@
 
 <body>
 <div id="content">
-    <h1>Testing Phone Gyroscope and Accelerometer</h1>
+    <h3>Testing Phone Gyroscope and Accelerometer</h3>
+
+    <canvas id="myChart" width="400" height="400"> </canvas>
+
     <div id="yes">
     </div>
     <div id="no">
@@ -35,6 +40,7 @@
     <div id="outputAcc"></div>
     <div id="outputGyro"></div>
 </div>
+
 <script>
 
 
@@ -54,8 +60,15 @@ var vz = 0;
 // var ay = 0;
 // var az = 0;
 
+// Declaring an array which all the accelerometer information will sit
+// Will need to map these items later (x, y and z values)
 var accel_array = [];
+var accel_time = [];
+var accel_ax = [];
+var accel_ay = [];
+var accel_az = [];
 
+  // Device motion stuff  
 if (window.DeviceMotionEvent==undefined) {
     document.getElementById("no").style.display="block";
     document.getElementById("yes").style.display="none";
@@ -77,10 +90,16 @@ var output_xyz ;
                 'datetime': new Date()
             });
 
+            accel_time.push(new Date());
+            accel_ax.push(event.accelerationIncludingGravity.x);
+            accel_ay.push(event.accelerationIncludingGravity.y);
+            accel_az.push(event.accelerationIncludingGravity.z);
+
+
 
     };
 
-    
+
     // Print out information about the gyroscope
     // window.ondeviceorientation = function(event) {
     //     a_alpha = event.alpha;
@@ -92,10 +111,61 @@ var output_xyz ;
     // };
 
 } 
+    // Printing information on screen every 0.5 seconds
     setInterval(function() {
         // $('#objectPrint').html(JSON.stringify(accel_array));
         $('#outputAcc').html(output_xyz, new Date());
-        }, 1000);
+
+        var test_labels = [];
+        for (var i = 0; i < accel_time.length; i++) {
+            test_labels.push(i);
+        }
+
+        // Testing graphs
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var data = {
+            labels: test_labels, //accel_time,
+            datasets: [
+                {
+                    label: "X-axis",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: accel_ax
+                },
+                {
+                    label: "Y-axis",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: accel_ay
+                },
+                {
+                    label: "Z-axis",
+                    fillColor: "rgba(200,0,200,0.2)",
+                    strokeColor: "rgba(200,0,200,1)",
+                    pointColor: "rgba(200,0,200,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: accel_az
+                }
+            ]
+        };
+        var myLineChart = new Chart(ctx).Line(data);
+
+
+
+
+
+
+        }, 20000);
 
 </script>
 
