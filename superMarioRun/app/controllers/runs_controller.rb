@@ -1,5 +1,8 @@
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
+  def testing
+  end
+
   def index
     @runs = Run.all
   end
