@@ -1,3 +1,7 @@
-button.logout {
+a.logout {
 	background-color: red;
+	width: 95%;
+	margin: 0 auto;
+	color: white;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
