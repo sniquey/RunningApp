@@ -16,14 +16,16 @@
 .coinstillnext {
 	font-size: 10px;
 	width: 80%;
-	position: relative;
-	margin: 0 auto;
+	position: absolute;
+	margin: 0 10%;
+	bottom: 80px;
 	text-align: center;
 }
 
 .coinnum {
 	position: absolute;
 	right: 10px;
+	top: 80px;
 }
 
 .meter { 
@@ -184,5 +186,17 @@
 }
 .meter > span:after, .animate > span > span {
   -webkit-animation: move 2s linear infinite;
+}
+
+.totaldistance {
+	position: absolute;
+	left: 20px;
+	top: 200px;
+}
+
+.totaltime {
+	position: absolute;
+	left: 20px;
+	top: 280px;
 }
 
