@@ -1,10 +1,11 @@
+
 <h1>Listing runs</h1>
 
 <% @runs.each do |run| %>
   <div class="run_box">
-    <h3>Run Date: </h3> <h4> <%= run.locations.first.created_at %> </h4>
-    <h3>Run Start Time: </h3> <h4> <%= run.locations.first.created_at %> </h4>
-    <h3>Run End Time: </h3> <h4> <%= run.locations.last.created_at %> </h4>
+    <h3>Run Date: </h3> <h4> <%= run.locations.first.created_at.strftime("%B %d, %Y") %> </h4>
+    <h3>Run Start Time: </h3> <h4> <%= run.locations.first.created_at.strftime("%I:%M:%S %P") %> </h4>
+    <h3>Run End Time: </h3> <h4> <%= run.locations.last.created_at.strftime("%I:%M:%S %P") %> </h4>
     <h3>Total Run Time: </h3> <h4> <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </h4>
     <h3>Total Run Distance: </h3> <h4> <%= (run.locations.last.cumulative_distance).round(2) %> metres </h4>
     <h3>Average Running Pace: </h3> <h4> <%= (run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at)).round(2) %> m/s </h4>
@@ -14,14 +15,49 @@
     <h3>Total Mushrooms: </h3> <h4> <%= run.mushroom_counter %> </h4>
     <h3>Total Turtles: </h3> <h4> <%= run.turtle_counter %> </h4>
 
-    <map class="run_map"> 
-    MAP GOES HERE
+<script>
+ 
+// function initialize() {
+//   var mapOptions = {
+//     zoom: 3,
+//     center: new google.maps.LatLng(0, -180),
+//     mapTypeId: google.maps.MapTypeId.TERRAIN
+//   };
+
+//   var map = new google.maps.Map($('.map-canvas'),
+//       mapOptions);
+
+//   var flightPlanCoordinates = [
+//     new google.maps.LatLng(37.772323, -122.214897),
+//     new google.maps.LatLng(21.291982, -157.821856),
+//     new google.maps.LatLng(-18.142599, 178.431),
+//     new google.maps.LatLng(-27.46758, 153.027892)
+//   ];
+//   var flightPath = new google.maps.Polyline({
+//     path: flightPlanCoordinates,
+//     geodesic: true,
+//     strokeColor: '#FF0000',
+//     strokeOpacity: 1.0,
+//     strokeWeight: 2
+//   });
+
+//   flightPath.setMap(map);
+// }
+
+// google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+   MAP GOES HERE
     <% location_latlon = [] %>
     <% run.locations.each do |location| %>
         <% location_latlon << [location.latitude, location.longitude] %>
     <% end %>
+
     LATITUDE LONGITUDE: <%= location_latlon %>
 
+    <div class="map-canvas"></div>
+ 
     </map>
 
 
@@ -33,6 +69,8 @@
 
   </div>
 
+
 <% end %>
+
 
 
