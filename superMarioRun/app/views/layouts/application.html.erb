@@ -35,8 +35,8 @@
 <span class="pull-left">
   <img src="/assets/Mario.png" class="mariologin" class="content-padded">
   </span> 
- <% if @user == current_user %>
-    <a class="icon icon-bars pull-right" href="#settingsModal"></a>
+ <% if current_user %>
+    <a class="icon icon-bars pull-right menu-icon" href="#settingsModal"></a>
     <% end %>
   <h1 class="title">Super Mario Run</h1>
 </header>
@@ -55,7 +55,7 @@
 
     <%= yield %>
 
-    <% if @user == current_user %>
+    <% if current_user %>
     
     <nav class="bar bar-tab">
   <a class="tab-item active" href = "/">

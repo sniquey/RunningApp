@@ -1,0 +1,86 @@
+.signuppage {
+	height: 100%;
+	background-color: #e6af17;
+	background-repeat: none;
+	background-size: 100% auto;
+	width: 100%;
+	height: 100%;
+	padding-top: 10px;
+}
+
+h2 {
+	margin-left: 25%;
+}
+.mariologin-jump {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 35%;
+	margin-top: 20px;
+}
+
+.signupbutton {
+	width: 80%;
+	position: relative;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.signupbutton input{
+	background-color: red;
+}
+
+.outersignupscreen {
+	width: 85%;
+	height: 45%;
+	border: solid;
+	margin: 0 auto;
+	border-radius: 20%;
+	background-color: #222;
+}
+
+.signupscreen {
+	width: 80%;
+	height: 90%;
+	border-style: solid;
+	margin: 0 auto;
+	margin-top: 10px;
+	background-image: url('mariogameboy.gif');
+	background-size: 100vw auto;
+
+}
+
+.gameconsole {
+	
+	position: relative;
+}
+
+#user_email, #user_password, #user_name, #user_password_confirmation {
+	border-radius: 20%;
+	width: 80%;
+	position: relative;
+	margin: 0 auto;
+	border: solid;
+	margin-left: 10%;
+}
+
+.alert {
+	background-color: #e6af17;
+	padding-bottom: 20px;
+	margin-bottom: -20px;
+	text-align: right;
+}
+
+.signupemail, .signuppassword, .signupname {
+	margin-left: 35px;
+}
+
+.passwordvalidatelength {
+	font-family: 'Dosis', sans-serif;
+}
+
+
+
+
+
+

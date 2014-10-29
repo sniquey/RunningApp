@@ -1,35 +1,58 @@
+<link rel="stylesheet" href="/assets/levels.css">
 <% if current_user.level_id == 1 %>
-<link type="text/stylesheet" href="assets/level1.css">
-<% else %>
+	<div class="dashboard-level1">
+<% elsif current_user.level_id == 2 %>
+	<div class="dashboard-level2">
+<% elsif current_user.level_id == 3 %>
+	<div class="dashboard-level3">
+<% elsif current_user.level_id == 4 %>
+	<div class="dashboard-level4">
+<% elsif current_user.level_id == 5 %>
+	<div class="dashboard-level5">
+<% elsif current_user.level_id == 6 %>
+	<div class="dashboard-level6">
+<% elsif current_user.level_id == 7 %>
+	<div class="dashboard-level7">
+<% elsif current_user.level_id == 8 %>
+	<div class="dashboard-level8">
+<% elsif current_user.level_id == 9 %>
+	<div class="dashboard-level9">
+<% elsif current_user.level_id == 10 %>
+	<div class="dashboard-level10">
 <% end %>
-<div class="dashboard">
+
 	    <button id = "play-sound">Play audio</button>
 	    <button id = "stop-sound">Stop audio</button>
 
 
-	<div class = "primary-block content-block">
-			<div>Level</div>
-			<div><%= current_user.level_id %></div>
+	<div class = "primary-block content-block levelinfo">
+			<div>Level:<%= current_user.level_id %></div>
+			<div><%= current_user.level.theme %></div>
 	</div>
 
-	<div class = "primary-block content-block">
+	<div class = "primary-block content-block coinnum">
 			<div><img class="coin" src="assets/coin.png" alt=""></div>
-			<div>coins</div>
+			<div>500</div>
 	</div>
 
-	<div class = "content-block">
-			<strong>Total distance</strong>
+	<div class="totaldistance">
+		<div class = "content-block"><strong>Total distance</strong></div>
+		<div class = "content-block"><div>30km</div></div>
 	</div>
 
-	<div class = "content-block">
-			<div>30km</div>
+	<div class="totaltime">
+		<div class = "content-block"><strong>Total time run</strong></div>
+		<div class = "content-block"><div>00:00:00</div></div>
 	</div>
 
-	<div class = "content-block">
-			<strong>Total time run</strong>
+	<div class="coinstillnext">
+		<div class="meter animate">
+	<span style="width: 50%"><span></span></span>
+</div>
+		<div>300 coins till next level</div>
+
 	</div>
-	<div class = "content-block">
-			<div>00:00:00</div>
-	</div>
+
+
 </div>
 
