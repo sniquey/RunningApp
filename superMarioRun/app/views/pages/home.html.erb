@@ -32,17 +32,17 @@
 
 	<div class = "primary-block content-block coinnum">
 			<div><img class="coin" src="assets/coin.png" alt=""></div>
-			<div>500</div>
+			<div> <%= @total_coins %> </div> <!-- Total coins calculated -->
 	</div>
 
 	<div class="totaldistance">
 		<div class = "content-block"><strong>Total distance</strong></div>
-		<div class = "content-block"><div>30km</div></div>
+		<div class = "content-block"> <%= @total_distance  %><div> <!-- current_user.total_distance --> </div></div> <!-- Total distance run -->
 	</div>
 
 	<div class="totaltime">
 		<div class = "content-block"><strong>Total time run</strong></div>
-		<div class = "content-block"><div>00:00:00</div></div>
+		<div class = "content-block"><div> <%= @total_time  %><!-- current_user.total_times --> </div></div> <!-- Total time run -->
 	</div>
 
 	<div class="coinstillnext">
