@@ -4,10 +4,18 @@ class RunsController < ApplicationController
   end
 
   def index
-    @runs = Run.all
+    show_runs = []
+    current_user.runs.each do |run|
+      if run.locations.length > 0
+        show_runs << run
+      end
+    end
+
+    @runs = current_user.runs  #Run.all
   end
 
   def show
+
   end
 
   # GET /runs/new
@@ -71,6 +79,6 @@ class RunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:total_coins, :calories, :user_id, :total_mushrooms, :total_turtles, :start_time, :end_time)
+      params.require(:run).permit(:total_coins, :steps, :calories, :user_id, :total_mushrooms, :total_turtles, :start_time, :end_time)
     end
 end

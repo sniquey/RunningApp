@@ -1,37 +1,22 @@
 <h1>Listing runs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Coins</th>
-      <th>Calories</th>
-      <th>User</th>
-      <th>Mushrooms</th>
-      <th>Turtles</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @runs.each do |run| %>
+  <div class="run_box">
+    <h2>Run Date</h2> <%= run.locations.first.created_at %>
+    <h2>Run Start Time</h2> <%= run.locations.first.created_at %>
+    <h2>Run End Time</h2> <%= run.locations.last.created_at %>
+    <h2>Total Coins</h2>  <%= run.locations.where(:coins => true).length  %>
+    <h2>Total Mushrooms</h2>
+    <h2>Total Turtles</h2>
 
-  
+    <ul>
+        <li><%= link_to 'Show', run %></li>
+        <li><%= link_to 'Edit', edit_run_path(run) %></li>
+        <li><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
 
-  <tbody>
-    <% @runs.each do |run| %>
-      <tr>
-        <td><%= run.total_coins %></td>
-        <td><%= run.calories %></td>
-        <td><%= run.user_id %></td>
-        <td><%= run.total_mushrooms %></td>
-        <td><%= run.total_turtles %></td>
-        <td><%= run.start_time %></td>
-        <td><%= run.end_time %></td>
-        <td><%= link_to 'Show', run %></td>
-        <td><%= link_to 'Edit', edit_run_path(run) %></td>
-        <td><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+<% end %>
+
+

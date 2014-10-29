@@ -10,6 +10,8 @@ $(document).ready(function () {
 			}
 			// getLocation();
 			locationtracking = setInterval(getLocation, 2500);
+			// pedometer_tracking = setInterval(pedometer, 2500);
+
 			$('html').addClass('running');
 		}
 		$('html').on('touchstart', '#startrun', startRunning);
@@ -18,6 +20,8 @@ $(document).ready(function () {
 		$('html').on('touchstart', '#stoprun', function () {
 			console.log('stopping!!!', locationtracking);
 			clearInterval(locationtracking);
+			// clearInterval(pedometer_tracking);
+
 			// reset the counter and the location tracking
 			locationtracking = null;
 			counter = 0;
