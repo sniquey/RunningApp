@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_confirmation_of :password # Shouldn't Devise handle this for us?
 	has_many :runs
-	belongs_to :level
+	has_many :locations, :through => :runs # This is okay
+  belongs_to :level
 
 
   after_initialize :defaults
@@ -54,6 +55,9 @@ def defaults
   end
 end
 
+  def distance_sum
+    self.locations.inject(0) {|sum, location| sum += location.distance_from_last }    
+  end
 
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
