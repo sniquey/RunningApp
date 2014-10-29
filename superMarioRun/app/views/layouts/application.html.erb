@@ -106,8 +106,8 @@
             <div class="media-body">
               Enable sounds
             </div>
-            <div class="toggle">
-              <div class="toggle-handle"></div>
+            <div class="toggle active">
+              <div class="toggle-handle enable-sounds"></div>
             </div>
           </li>
           <li class="table-view-cell media">
@@ -125,9 +125,9 @@
         </div>
 
         
-          <button id = "logout" class="btn btn-positive btn-block logout" href='/users/logout'>Logout</button>
+<!--           <button id = "logout" class="btn btn-positive btn-block logout" href='/users/sign_out'>Logout</button> -->
           <a href="">
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete, :id => "logout", :class => "btn btn-positive btn-block logout") %>
           </a>
         </div>
 
