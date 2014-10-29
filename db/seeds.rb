@@ -26,10 +26,10 @@ level7 = Level.create(:id => 7, :name => 'Level 7', :coin_freq => 7, :mushroom_f
 				:description => 'Level 7 Run', :coin_threshold => 600, :theme => '')
 level8 = Level.create(:id => 8, :name => 'Level 8', :coin_freq => 8, :mushroom_freq => 80, :turtle_freq => 800, 
 				:description => 'Level 8 Run', :coin_threshold => 700, :theme => '')
-level9 = Level.create(:id => 8, :name => 'Level 9', :coin_freq => 8, :mushroom_freq => 80, :turtle_freq => 800, 
+level9 = Level.create(:id => 9, :name => 'Level 9', :coin_freq => 8, :mushroom_freq => 80, :turtle_freq => 800, 
 				:description => 'Level 8 Run', :coin_threshold => 700, :theme => '')
 
-level10 = Level.create(:id => 8, :name => 'Level 10', :coin_freq => 8, :mushroom_freq => 80, :turtle_freq => 800, 
+level10 = Level.create(:id => 10, :name => 'Level 10', :coin_freq => 8, :mushroom_freq => 80, :turtle_freq => 800, 
 				:description => 'Level 8 Run', :coin_threshold => 700, :theme => '')
 
 
