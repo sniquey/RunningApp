@@ -25,9 +25,9 @@
 
 	<div class = "primary-block content-block levelinfo">
 			<div>Level:<%= current_user.level_id %></div>
-			<div><%= current_user.level.theme %></div>
+			<div><%= @current_user.level.theme %></div>
 	</div>
-
+	<% raise 'params' %>
 	<div class = "primary-block content-block coinnum">
 			<div><img class="coin" src="assets/coin.png" alt=""></div>
 			<div> <%= @total_coins %> </div> <!-- Total coins calculated -->
@@ -45,9 +45,9 @@
 
 	<div class="coinstillnext">
 		<div class="meter animate">
-	<span style="width: 50%"><span></span></span>
+	<span style="width:<%= @percentage_completion.to_f %>%" ><span></span></span>
 </div>
-		<div>300 coins till next level</div>
+		<div><%= @coins_to_next %> coins till next level</div>
 
 	</div>
 

@@ -13,7 +13,7 @@ $(document).ready(function () {
 			// pedometer_tracking = setInterval(pedometer, 2500);
 
 			$('html').addClass('running');
-		}
+		};
 		$('html').on('touchstart', '#startrun', startRunning);
 
 		// If you push the STOP TRACKING button

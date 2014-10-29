@@ -1,19 +1,21 @@
 
-<h1>Listing runs</h1>
-
 <% @runs.each do |run| %>
   <div class="run_box">
-    <h3>Run Date: </h3> <h4> <%= run.locations.first.created_at.strftime("%B %d, %Y") %> </h4>
-    <h3>Run Start Time: </h3> <h4> <%= run.locations.first.created_at.strftime("%I:%M:%S %P") %> </h4>
-    <h3>Run End Time: </h3> <h4> <%= run.locations.last.created_at.strftime("%I:%M:%S %P") %> </h4>
-    <h3>Total Run Time: </h3> <h4> <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </h4>
-    <h3>Total Run Distance: </h3> <h4> <%= (run.locations.last.cumulative_distance).round(2) %> metres </h4>
-    <h3>Average Running Pace: </h3> <h4> <%= (run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at)).round(2) %> m/s </h4>
-    <h3>Total steps: </h3> <h4> Need to put steps in here </h4>
-
-    <h3>Total Coins: </h3>  <h4> <%= run.coin_counter %> </h4>
-    <h3>Total Mushrooms: </h3> <h4> <%= run.mushroom_counter %> </h4>
-    <h3>Total Turtles: </h3> <h4> <%= run.turtle_counter %> </h4>
+      <div class="run_column">
+        <h5>Run Date:  <%= run.locations.first.created_at.strftime("%B %d, %Y") %> </h5>
+        <h5>Run Start Time:  <%= run.locations.first.created_at.strftime("%I:%M:%S %P") %> </h5>
+        <h5>Run End Time:  <%= run.locations.last.created_at.strftime("%I:%M:%S %P") %> </h5>
+        <h5>Total Run Time:  <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </h5>
+        <h5>Total Run Distance:  <%= (run.locations.last.cumulative_distance).round(2) %> metres </h5>
+        <h5>Average Running Pace:  <%= (run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at)).round(2) %> m/s </h5>
+        <h5>Total steps:  Need to put steps in here </h5>
+    </div>
+    
+    <div class="run_column">
+        <h5>Total Coins:   <%= run.coin_counter %> </h5>
+        <h5>Total Mushrooms:  <%= run.mushroom_counter %> </h5>
+        <h5>Total Turtles:  <%= run.turtle_counter %> </h5>
+    </div>
 
 <script>
  
@@ -60,12 +62,7 @@
  
     </map>
 
-
-    <ul>
-        <li><%= link_to 'Show', run %></li>
-        <li><%= link_to 'Edit', edit_run_path(run) %></li>
-        <li><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    </ul>
+        <%= link_to 'Show', run %>
 
   </div>
 
