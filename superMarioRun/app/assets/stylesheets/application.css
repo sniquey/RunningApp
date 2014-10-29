@@ -103,5 +103,8 @@ th { border-bottom: 1px solid #DDD; }
 	left: 40px;
 }
 
-
+.menu-icon {
+	position: absolute !important;
+	right: 11px;
+}
 
