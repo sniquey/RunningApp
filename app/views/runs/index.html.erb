@@ -2,12 +2,28 @@
 
 <% @runs.each do |run| %>
   <div class="run_box">
-    <h2>Run Date</h2> <%= run.locations.first.created_at %>
-    <h2>Run Start Time</h2> <%= run.locations.first.created_at %>
-    <h2>Run End Time</h2> <%= run.locations.last.created_at %>
-    <h2>Total Coins</h2>  <%= run.locations.where(:coins => true).length  %>
-    <h2>Total Mushrooms</h2>
-    <h2>Total Turtles</h2>
+    <h3>Run Date: </h3> <h4> <%= run.locations.first.created_at %> </h4>
+    <h3>Run Start Time: </h3> <h4> <%= run.locations.first.created_at %> </h4>
+    <h3>Run End Time: </h3> <h4> <%= run.locations.last.created_at %> </h4>
+    <h3>Total Run Time: </h3> <h4> <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </h4>
+    <h3>Total Run Distance: </h3> <h4> <%= (run.locations.last.cumulative_distance).round(2) %> metres </h4>
+    <h3>Average Running Pace: </h3> <h4> <%= (run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at)).round(2) %> m/s </h4>
+    <h3>Total steps: </h3> <h4> Need to put steps in here </h4>
+
+    <h3>Total Coins: </h3>  <h4> <%= run.coin_counter %> </h4>
+    <h3>Total Mushrooms: </h3> <h4> <%= run.mushroom_counter %> </h4>
+    <h3>Total Turtles: </h3> <h4> <%= run.turtle_counter %> </h4>
+
+    <map class="run_map"> 
+    MAP GOES HERE
+    <% location_latlon = [] %>
+    <% run.locations.each do |location| %>
+        <% location_latlon << [location.latitude, location.longitude] %>
+    <% end %>
+    LATITUDE LONGITUDE: <%= location_latlon %>
+
+    </map>
+
 
     <ul>
         <li><%= link_to 'Show', run %></li>

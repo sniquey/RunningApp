@@ -77,4 +77,21 @@ end
       end
   	end
   end 
+
+
+  def user_coin_count 
+    coin_count = 0
+    self.locations.each do |location|
+      if location.coin == true
+        coin_count += 1
+      end
+    end
+    return coin_count
+  end
+
+  # def level
+  #   coins_accumulated = self.user_coin_count 
+  # end
+
+
 end

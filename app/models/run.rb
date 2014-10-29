@@ -20,4 +20,35 @@
 class Run < ActiveRecord::Base
 	belongs_to :user
 	has_many :locations
+
+	def coin_counter
+		coin_counter = 0
+    	self.locations.each do |location|
+    		if location.coin == true 
+    			coin_counter += 1
+    		end
+    	end
+    	return coin_counter
+  	end
+
+	def mushroom_counter
+		mushroom_counter = 0
+    	self.locations.each do |location|
+    		if location.mushroom == true 
+    			mushroom_counter += 1
+    		end
+    	end
+    	return mushroom_counter
+  	end
+
+	def turtle_counter
+		turtle_counter = 0
+    	self.locations.each do |location|
+    		if location.turtle == true 
+    			turtle_counter += 1
+    		end
+    	end
+    	return turtle_counter
+  	end
+
 end

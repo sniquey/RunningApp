@@ -11,7 +11,9 @@ class RunsController < ApplicationController
       end
     end
 
-    @runs = current_user.runs  #Run.all
+    @runs = show_runs        #current_user.runs  #Run.all
+    # raise 'params'
+
   end
 
   def show
