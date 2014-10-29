@@ -4,8 +4,7 @@ var y = 0;
 var z = 0;
 var time;
 
-// Declaring an array which all the accelerometer information will sit
-// Will need to map these items later (x, y and z values)
+// Declaring A Ton Of Variables - Woot!
 var accel_array = [];
 var accel_time = [];
 var accel_ax = [];
@@ -16,9 +15,23 @@ var accel_squared = [];
 
 var step_counter = 0;
 var running_average;
+var high_comparison;
+var low_comparison; 
 var deviation_from_average;
 var deviation_array = [];
-var comparison_value = 4;
+var comparison_value;
+var sum;
+var temp_time = new Date(); 
+var old_temp_time = new Date();
+var time_for_step;
+var pace_per_2_seconds;
+var stride_length;
+var distance_of_steps = 0;
+var last_step_counter = 0;
+var current_user = {
+    height: 1.8
+};
+var per_stride_length;
 
   // Device motion stuff  
 if (window.DeviceMotionEvent==undefined) {
@@ -47,44 +60,103 @@ var output_xyz ;
 
             // Adds to front of an array
             accel_squared.unshift( acceleration_squared );
+            accel_squared = accel_squared.sort();
 
-            // Find the exponential moving average as a value
+            // TODO - Trying to find the running average, high comparison and low comparison across a sample range to keep it relevant with the running speed
+            // if (accel_squared.length == 50) {
+            //     sum = 0;
+            //     for (var i =0; i < accel_squared.length; i++) {
+            //         sum += accel_squared[i];
+            //     }
+
+            //     running_average = sum / 50;
+
+            //     accel_squared_sorted = accel_squared.sort();
+
+            //     high_comparison = accel_squared_sorted[50*0.75];
+            //     low_comparison = accel_squared_sorted[50*0.25];
+            //     accel_squared = [];
+            // }
+
+            // TODO - Find the exponential moving average as a value
             running_average = 10  ;             //(accel_squared);
 
             // Deviation from the average
             deviation_from_average = Math.abs(acceleration_squared - running_average);
             deviation_array.unshift(deviation_from_average);
 
-            if ((comparison_value == 0.25) && (deviation_from_average <= comparison_value)) {
-                comparison_value = 4;
-                step_counter += 1;
-            } else if ((comparison_value == 4) && (deviation_from_average >= comparison_value)) {
-                comparison_value = 0.25;
-                step_counter += 1;
-            } 
+            // Comparison value being set if there is no calculations happening
+            if (comparison_value != +comparison_value) {
+                comparison_value = 3;
+                low_comparison = 0.25;
+                high_comparison = 3;
+            }
 
-            // TODO - figure out how to incorporate this array of accel_squared to read pedometer data
-            // Need to look for a max, min and brushing through the running_average value
+
+            // Find the stride length per frequency
+            var find_stride_length = function() {
+                if (pace_per_2_seconds <= 2) {
+                     per_stride_length = current_user.height/5;
+                } else if (pace_per_2_seconds <= 3) {
+                     per_stride_length = current_user.height/4;
+                } else if (pace_per_2_seconds <= 4) {
+                     per_stride_length = current_user.height/3;
+                } else if (pace_per_2_seconds <= 5) {
+                     per_stride_length = current_user.height/2;
+                } else if (pace_per_2_seconds <= 6) {
+                     per_stride_length = current_user.height/1.2;
+                } else if (pace_per_2_seconds <= 8) {
+                     per_stride_length = current_user.height;
+                } else if (pace_per_2_seconds > 8) {
+                     per_stride_length = current_user.height * 1.2;
+                }
+            };
+
+
+            // Calculating frequency of each pace per 2 seconds 
+            var paceMeasurement = function() {
+                temp_time = new Date();
+                time_for_step = temp_time - old_temp_time;
+                if (time_for_step < 2000) {
+                    return; // 2 seconds haven't elapsed yet so don't calculate.
+                } else {
+                    old_temp_time = temp_time;
+                    pace_per_2_seconds = (step_counter - last_step_counter)/(time_for_step/1000); // Finds the number of steps in 2 seconds
+                    last_step_counter = step_counter;
+
+                    find_stride_length();
+
+                    stride_length = pace_per_2_seconds * per_stride_length;
+                    distance_of_steps += stride_length;
+                }
+            };
+
+
+
+            // Calculating a step
+            if ((comparison_value == low_comparison) && (deviation_from_average <= comparison_value)) {
+                comparison_value = high_comparison;
+                step_counter += 1;
+
+                paceMeasurement();
+ 
+            } else if ((comparison_value == high_comparison) && (deviation_from_average >= comparison_value)) {
+                comparison_value = low_comparison;
+                step_counter += 1;
+
+                paceMeasurement(); 
+            } 
 
     };
 
-
-    // Print out information about the gyroscope
-    // window.ondeviceorientation = function(event) {
-    //     a_alpha = event.alpha;
-    //     a_beta = event.beta;
-    //     a_gamma = event.gamma;
-
-    //     var output_gyro = "<h3>Gyroscope data</h3> Alpha: " + event.alpha.toFixed(2) + " Beta: " + event.beta.toFixed(2) + " Gamma: " + event.gamma.toFixed(2);
-    //     $('#outputGyro').html(output_gyro);
-    // };
-
 } 
-    // Printing information on screen every 0.5 seconds
-    setInterval(function() {
-        // $('#objectPrint').html(JSON.stringify(accel_array));
-        $('#outputAcc').html(output_xyz, new Date());
-        // $('#objectPrint').html(accel_squared);
-        $('#objectPrint').html( JSON.stringify(deviation_array));
-        $('#step_counter').html(step_counter);
-        }, 500);
+    
+// Printing information on screen every 0.5 seconds
+setInterval(function() {
+    // $('#objectPrint').html(JSON.stringify(accel_array));
+    $('#outputAcc').html(output_xyz);
+    // $('#objectPrint').html(accel_squared);
+    // $('#objectPrint').html( JSON.stringify(deviation_array));
+    $('#step_counter').html(step_counter);
+    $('#distance_of_steps').html(distance_of_steps);
+}, 500);
