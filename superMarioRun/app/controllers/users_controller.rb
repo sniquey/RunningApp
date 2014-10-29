@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :sets_current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!
   # GET /users
   # GET /users.json
   def index

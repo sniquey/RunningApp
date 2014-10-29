@@ -17,10 +17,10 @@ private
 #   end
 #   helper_method :logged_in?
   
-  def authenticate
-	@current_user = User.find_by(:id => session[:user_id])
-	session[:user_id] = nil unless @current_user.present?
-  end
+ #  def authenticate
+	# @current_user = User.find_by(:id => session[:user_id])
+	# session[:user_id] = nil unless @current_user.present?
+ #  end
 
   def require_user
     if current_user
