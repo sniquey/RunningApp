@@ -86,6 +86,7 @@
 
   <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
+      <% if current_user %>
       <header class="bar bar-nav">
         <a class="icon icon-close pull-right" href="#settingsModal"></a>
         <h1 class="title">User Settings</h1>
@@ -93,9 +94,8 @@
 
       <div class="content">
         <form class="input-group">
-          <input type="text" placeholder="Full name">
-          <input type="email" placeholder="Email">
-          <input type="text" placeholder="Username">
+          <%= current_user.name %>
+          <%= current_user.email %>
         </form>
 
         <h5 class="content-padded">App settings</h5>
@@ -113,26 +113,23 @@
           <li class="table-view-cell media">
             <span class="media-object pull-left icon icon-person"></span>
             <div class="media-body">
-              Parental controls
+              Edit Profile
             </div>
-            <div class="toggle">
-              <div class="toggle-handle"></div>
+            <div class="toggle edit">
+              <%= link_to 'Edit', edit_user_path(current_user) %> 
             </div>
           </li>
         </ul>
-        <div class="content-padded">
-          <button class="btn btn-positive btn-block">Save settings</button>
-        </div>
-
-        
-<!--           <button id = "logout" class="btn btn-positive btn-block logout" href='/users/sign_out'>Logout</button> -->
+      
           <a href="">
             <%= link_to('Logout', destroy_user_session_path, :method => :delete, :id => "logout", :class => "btn btn-positive btn-block logout") %>
           </a>
         </div>
-
-
+        <% end %>
       </div>
+
+
+
     </div>
 
 </body>

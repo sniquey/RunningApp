@@ -1,0 +1,35 @@
+label {
+	margin-left: 40px;
+}
+
+#user_height {
+	width: 80%;
+	margin-left: 10%;
+}
+
+#user_picture {
+	margin-left: 10%;
+}
+
+#user_dob_1i {
+	width: 20px;
+	margin-left: 10%;
+	position: relative;
+	display: inline-block;
+}
+
+#user_dob_2i {
+	width: 20px;
+	position: relative;
+	display: inline-block;
+}
+
+#user_dob_3i {
+	width: 20px;
+	position: relative;
+	display: inline-block;
+}
+
+.containingeditpage {
+	background-color: #e6af17;
+}
