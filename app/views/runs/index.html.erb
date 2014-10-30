@@ -21,11 +21,11 @@
     </div>
 
     <div class="run_column_longer">
-        <p> <span> Run Date: </span> <%= run.locations.first.created_at.strftime("%B %d, %Y") %> </p>
-        <p> <span> Total Run Time: </span>  <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </p>
-        <p><span> Total Run Distance: </span> <%= (run.locations.last.cumulative_distance).round(2) %> metres </p>
-        <p> <span> Average Running Pace: </span> <%= ((run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at))*3.6).round(2) %> km/hr </p>
-        <p> <span> Total steps: </span> <%= run.steps %> steps </p>
+        <p> <strong> Run Time: </strong> <%= run.locations.first.created_at.strftime("%I:%M %p, %B %d, %Y") %> </p>
+        <p> <strong> Total Run Time: </strong>  <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </p>
+        <p> <strong>Total Run Distance: </strong> <%= (run.locations.last.cumulative_distance).round(2) %> metres </p>
+        <p> <strong> Average Running Pace: </strong> <%= ((run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at))*3.6).round(2) %> km/hr </p>
+        <p> <strong> Total steps: </strong> <%= run.steps %> steps </p>
     </div>
 
   </div>

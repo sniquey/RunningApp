@@ -38,11 +38,15 @@ class PagesController < ApplicationController
 	  	end
 	  	current_user.maybe_update_levels
 
-  	
-	  	@next_threshold = Level.all[level_counter].coin_threshold.to_f 
-	  	@coins_to_next = (@next_threshold - @total_coins).to_f
-	  	@percentage_completion = (@total_coins/@next_threshold)*100.to_f		## "%0.2f" % 
-
+	  	if @total_coins == 0 	# Conditional based on zero coins
+		  	@next_threshold = 100 
+		  	@coins_to_next = 100
+		  	@percentage_completion = 0		
+  		else					
+		  	@next_threshold = Level.all[level_counter].coin_threshold.to_f
+		  	@coins_to_next = (@next_threshold - @total_coins).to_f
+		  	@percentage_completion = ((@total_coins - Level.all[level_counter - 1].coin_threshold.to_f )/(@next_threshold - Level.all[level_counter - 1].coin_threshold.to_f ))*100.to_f		## "%0.2f" % 
+		end
 
   	# raise 'current_user'
 

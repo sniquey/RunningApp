@@ -362,7 +362,6 @@ var pedometer = function() {
 
         };
 
-
     } 
     // Printing information on screen every 0.5 seconds
     return setInterval(function() {
