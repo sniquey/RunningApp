@@ -34,11 +34,19 @@
 .alerts {
 	z-index: 1000;
 	position: absolute;
-	width: 100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
+	top:0;
 }
 
 .run_alert {
+	width: 100%;
+	height: 50%;
+	margin: 0 auto;
+}
+
+.run_alert img {
 	width:100%;
-	height: relative;
+	height: 100%;
+	display: inline-table;
 }

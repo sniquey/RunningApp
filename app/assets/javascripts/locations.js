@@ -127,10 +127,10 @@ function getLocation (lat_long_time_object) {
 
 
 			// Printing things on the screen
-			var kilom = Math.floor(run_distance / 1000).toFixed(0);
-			var meters = (run_distance % 1000).toFixed(0);
+			var kilom = Math.floor(run_distance / 1000);
+			var meters = (run_distance % 1000);
 
-			var run_distance_html = '<h4> Run distance: ' + kilom + ' km, ' + meters + ' m </h4>';
+			var run_distance_html = '<h4> Run distance: ' + kilom.toFixed(0) + ' km, ' + meters.toFixed(0) + ' m </h4>';
 			$('.run_distance').html(run_distance_html);
 
 			// Converting time
