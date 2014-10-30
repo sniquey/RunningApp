@@ -5,7 +5,6 @@ $(document).ready( function () {
 
 	var isPlaying = true;
 
-	
 	function pause_mario() {
 		mario_theme.loop = false;		
 		mario_theme.pause();

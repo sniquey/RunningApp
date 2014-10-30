@@ -1,8 +1,8 @@
 .show_index {
-	background: url('/assets/index_background.png') repeat-y;
+	background: url('/assets/index_background.png') center;
+    background-size: auto 100%;
 	color: black;
-	height: 100%;
-	width: 100%;
+	margin-top: 0px;
 }
 .run_box {
 	height: 120px;
