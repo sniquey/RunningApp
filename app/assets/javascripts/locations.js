@@ -150,7 +150,7 @@ function getLocation (lat_long_time_object) {
 			    var divisor_for_seconds = divisor_for_minutes % 60;
 			    var seconds = Math.ceil(divisor_for_seconds);
 
-			var run_time_html = '<h4> Run time: ' + hours + ' hours, ' + minutes + ' minutes, ' + seconds + ' seconds </h4>';
+			var run_time_html = '<h4> Run time: ' + hours + ':' + minutes + ':' + seconds + ' </h4>';
 			$('.run_time').html(run_time_html);
 
 			if (run_pace != +run_pace) {

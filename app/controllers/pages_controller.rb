@@ -23,8 +23,7 @@ class PagesController < ApplicationController
 	  	total_time = run_time.round(2) 	# Time in seconds
 		mm, ss = total_time.divmod(60)            
 		hh, mm = mm.divmod(60)           
-		dd, hh = hh.divmod(24)           
-		@total_time =  "%d days, %d hours, %d minutes, %d seconds" % [dd, hh, mm, ss]
+		@total_time =  "%d hr, %d min, %d sec" % [hh, mm, ss]
 
 
 	  	# Calculating levels
@@ -48,7 +47,12 @@ class PagesController < ApplicationController
 		  	@percentage_completion = ((@total_coins - Level.all[level_counter - 1].coin_threshold.to_f )/(@next_threshold - Level.all[level_counter - 1].coin_threshold.to_f ))*100.to_f		## "%0.2f" % 
 		end
 
-  	# raise 'current_user'
+		@total_steps = 0;
+		current_user.runs.each do |run|
+			if run.steps != nil
+				@total_steps += run.steps
+			end
+		end
 
   end
 
