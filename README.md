@@ -7,12 +7,9 @@ This app uses GPS tracking to gamify a run like a real-life Mario game.
 - FB login APIs and publish onto FB account
 
 Key models:
-- Users have many levels, runs, and points*
-- Levels have many runs
-- Runs belong to users and levels. Runs have many points.
-- Points belong to runs and users
+- Users have many runs
+- Runs have and belong to many Users
+- Teams have and belong to many Users
 
-* Points includes coins and lifelines
-
-
+* Levels and Run difficulty are determined using coins and lifelines
 

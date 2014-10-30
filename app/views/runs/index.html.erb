@@ -1,22 +1,73 @@
-<h1>Listing runs</h1>
 
 <% @runs.each do |run| %>
   <div class="run_box">
-    <h2>Run Date</h2> <%= run.locations.first.created_at %>
-    <h2>Run Start Time</h2> <%= run.locations.first.created_at %>
-    <h2>Run End Time</h2> <%= run.locations.last.created_at %>
-    <h2>Total Coins</h2>  <%= run.locations.where(:coins => true).length  %>
-    <h2>Total Mushrooms</h2>
-    <h2>Total Turtles</h2>
+      <div class="run_column">
+        <h5>Run Date:  <%= run.locations.first.created_at.strftime("%B %d, %Y") %> </h5>
+        <h5>Run Start Time:  <%= run.locations.first.created_at.strftime("%I:%M:%S %P") %> </h5>
+        <h5>Run End Time:  <%= run.locations.last.created_at.strftime("%I:%M:%S %P") %> </h5>
+        <h5>Total Run Time:  <%= (run.locations.last.created_at - run.locations.first.created_at).round(2) %> seconds </h5>
+        <h5>Total Run Distance:  <%= (run.locations.last.cumulative_distance).round(2) %> metres </h5>
+        <h5>Average Running Pace:  <%= (run.locations.last.cumulative_distance/(run.locations.last.created_at - run.locations.first.created_at)).round(2) %> m/s </h5>
+        <h5>Total steps:  Need to put steps in here </h5>
+    </div>
+    
+    <div class="run_column">
+        <h5>Total Coins:   <%= run.coin_counter %> </h5>
+        <h5>Total Mushrooms:  <%= run.mushroom_counter %> </h5>
+        <h5>Total Turtles:  <%= run.turtle_counter %> </h5>
+    </div>
 
-    <ul>
-        <li><%= link_to 'Show', run %></li>
-        <li><%= link_to 'Edit', edit_run_path(run) %></li>
-        <li><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    </ul>
+<script>
+ 
+// function initialize() {
+//   var mapOptions = {
+//     zoom: 3,
+//     center: new google.maps.LatLng(0, -180),
+//     mapTypeId: google.maps.MapTypeId.TERRAIN
+//   };
+
+//   var map = new google.maps.Map($('.map-canvas'),
+//       mapOptions);
+
+//   var flightPlanCoordinates = [
+//     new google.maps.LatLng(37.772323, -122.214897),
+//     new google.maps.LatLng(21.291982, -157.821856),
+//     new google.maps.LatLng(-18.142599, 178.431),
+//     new google.maps.LatLng(-27.46758, 153.027892)
+//   ];
+//   var flightPath = new google.maps.Polyline({
+//     path: flightPlanCoordinates,
+//     geodesic: true,
+//     strokeColor: '#FF0000',
+//     strokeOpacity: 1.0,
+//     strokeWeight: 2
+//   });
+
+//   flightPath.setMap(map);
+// }
+
+// google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+   MAP GOES HERE
+    <% location_latlon = [] %>
+    <% run.locations.each do |location| %>
+        <% location_latlon << [location.latitude, location.longitude] %>
+    <% end %>
+
+    LATITUDE LONGITUDE: <%= location_latlon %>
+
+    <div class="map-canvas"></div>
+ 
+    </map>
+
+        <%= link_to 'Show', run %>
 
   </div>
 
+
 <% end %>
+
 
 

@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   def home
-  	# raise 'current_user'
 	  	coins_array = current_user.locations.select { |location| location.coin == true }
 	  	@total_coins = coins_array.length
 
@@ -16,8 +15,26 @@ class PagesController < ApplicationController
 	  	}
 	  	@total_time = run_time.round(2)
 
-	  	# total_distance = current_user.locations {|location| location.distance_from_last }
-	  	# current_user.total_distance = 0
+
+
+	  	# Calculating levels
+	  	level_array = []
+	  	level_counter = 0
+	  	Level.all.each do |level|
+	  		level_array << level.coin_threshold
+	  		if level.coin_threshold < @total_coins
+	  			level_counter += 1
+	  		end
+	  	end
+
+	  	@current_user.level = Level.all[level_counter - 1]
+	  	@next_threshold = Level.all[level_counter].coin_threshold.to_f 
+	  	@coins_to_next = (@next_threshold - @total_coins).to_f
+	  	@percentage_completion = (@total_coins/@next_threshold)*100.to_f		## "%0.2f" % 
+
+
+  	# raise 'current_user'
+
   end
 
   def info

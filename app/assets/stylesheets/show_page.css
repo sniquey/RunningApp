@@ -1,0 +1,13 @@
+.run_box {
+	height: 100px;
+	width: 100%;
+	display: inline-table;
+	overflow: hidden;
+	border: 1px solid black;
+}
+
+.run_column {
+	display: inline-table;
+	width: 40%;
+	height: 100%;
+}
