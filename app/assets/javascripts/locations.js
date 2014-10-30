@@ -95,7 +95,13 @@ function getLocation (lat_long_time_object) {
 			// // Adding updated run details to the run page
 			
 			var resultLength = result.length;
-			var run_distance = result[resultLength - 1].cumulative_distance;
+			var run_distance ;
+			if (result.length > 0) {
+				run_distance = result[resultLength - 1].cumulative_distance;
+			} else {
+				run_distance = 0;
+			}
+
 			var run_time = (Date.parse(result[resultLength - 1].created_at) - Date.parse(result[0].created_at))/1000;
 			var run_pace = (run_distance)/(run_time)*(3.6); // from m/s to km/hour
 
@@ -365,10 +371,9 @@ var pedometer = function() {
             type: 'POST',
             dataType: 'json',
             data: {
-                "run[steps]":step_counter
+                "step_count":step_counter
             }
         });
     }, 500);
-
 
 };

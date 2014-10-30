@@ -51,10 +51,12 @@ class RunsController < ApplicationController
     # redirect_to runs_path
   end
 
-  def step_update
-    @run = current_user.runs.last
-    @run.steps = params[:step_count]
-    @run.save
+  def step_update ## UPDATING THE USER'S LAST RUN'S STEPS
+    @run = current_user.runs.last       # fnding the last run the user made
+    @run.steps = params[:step_count]    # pulling out the step_count as a params
+    @run.save  
+    render :json => {:status => 'ok'}
+    # binding.pry
   end
 
   # PATCH/PUT /runs/1
