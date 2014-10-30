@@ -45,7 +45,7 @@ h2 {
 	border-style: solid;
 	margin: 0 auto;
 	margin-top: 10px;
-	background-image: url('mariogameboy.gif');
+	background-image: url('/assets/mariogameboy.gif');
 	background-size: 100vw auto;
 
 }

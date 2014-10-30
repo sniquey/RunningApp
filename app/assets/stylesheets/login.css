@@ -41,7 +41,7 @@
 	border-style: solid;
 	margin: 0 auto;
 	margin-top: 10px;
-	background-image: url('giphyMario.gif');
+	background-image: url('/assets/giphyMario.gif');
 	background-size: 100vw auto;
 
 }
