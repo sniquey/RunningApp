@@ -5,13 +5,13 @@
 }
 
 .dashboard-level2 {
-	background-image: url('/assets/cloudbackground.gif');
+	background-image: url('/assets/gardenbackground.png');
 	width: 100%;
 	height: 100%;
 }
 
 .dashboard-level3 {
-	background-image: url('/assets/cloudbackground.gif');
+	background-image: url('/assets/hellbackground.png');
 	width: 100%;
 	height: 100%;
 }
