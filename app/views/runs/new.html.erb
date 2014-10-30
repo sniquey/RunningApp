@@ -1,39 +1,45 @@
 <link rel="stylesheet" href="/assets/runs.css">
 <div class="runpage">
-	<img src="/assets/Mario_running_fast.png">
+	<div class="images">
+		<img class="img" src="/assets/Mario_running_fast.png">
+		<div class="img coin_counter"> <img src="/assets/small_coin_moving.gif"> <h3> </h3></div>
+		<div class="img mushroom_counter"> <img src="/assets/mushroom_moving.gif"> <h3> </h3></div>
+		<div class="img turtle_counter"> <img src="/assets/turtle_moving_small.gif"> <h3> </h3></div>
+	</div>
+	<br>
+
+	<div class="alerts">
+		<div class="run_alert coins_alert">
+		</div>
+
+		<div class="run_alert mushrooms_alert">
+		</div>
+
+		<div class="run_alert turtles_alert">
+		</div>
+	</div>
+
+	<br>
 
 	  <div class="map" id="map" ></div>
-
+	<br>
 	<div class="locations_views"> 
-		<div class="run_time">
-			<h4>Run Time</h4>
+		<div class="location_element run_time">
+			<h4>Run Time: 0 hours, 0 minutes, 0 seconds</h4>
 		 </div>
 
-		<div class="run_distance"> 
-			<h4>Run Distance</h4>
+		<div class="location_element run_distance"> 
+			<h4>Run Distance: 0 km, 0 m</h4>
 		</div>
 		
-		<div class="run_pace"> 
-			<h4>Run Pace</h4>
+		<div class="location_element run_pace"> 
+			<h4>Run Pace: 0 km/hr</h4>
 		</div>
 
-		<div class="step_counter"> 
-			<h4>step_counter</h4>
+		<div class="location_element step_counter"> 
+			<h4>Pedometer: 0 steps</h4>
 		</div>
 
-		<div class="coin_counter"><h4>Coins Accumulated</h4> </div>
-		<div class="mushroom_counter"><h4>Mushrooms Eaten</h4> </div>
-		<div class="turtle_counter"><h4>Turtles Passed</h4> </div>
-
-
-		<div class="coins_alert">
-		</div>
-
-		<div class="mushrooms_alert">
-		</div>
-
-		<div class="turtles_alert">
-		</div>
 
 
 	</div>

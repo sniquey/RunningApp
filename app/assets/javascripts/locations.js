@@ -127,7 +127,10 @@ function getLocation (lat_long_time_object) {
 
 
 			// Printing things on the screen
-			var run_distance_html = '<h3> Run distance: </h3> <h4>' + run_distance.toFixed(2) + ' meters </h4>';
+			var kilom = Math.floor(run_distance / 1000).toFixed(0);
+			var meters = (run_distance % 1000).toFixed(0);
+
+			var run_distance_html = '<h4> Run distance: ' + kilom + ' km, ' + meters + ' m </h4>';
 			$('.run_distance').html(run_distance_html);
 
 			// Converting time
@@ -137,32 +140,32 @@ function getLocation (lat_long_time_object) {
 			    var divisor_for_seconds = divisor_for_minutes % 60;
 			    var seconds = Math.ceil(divisor_for_seconds);
 
-			var run_time_html = '<h3> Run time: </h3> <h4>' + hours + ' hours, ' + minutes + ' minutes, ' + seconds + ' seconds </h4>';
+			var run_time_html = '<h4> Run time: ' + hours + ' hours, ' + minutes + ' minutes, ' + seconds + ' seconds </h4>';
 			$('.run_time').html(run_time_html);
 
 			if (run_pace != +run_pace) {
 				run_pace = 0;
 			}
 
-			var run_pace_html = '<h3> Run pace: </h3> <h4>' + run_pace.toFixed(2) + ' km/hr </h4>';
+			var run_pace_html = '<h4> Run pace: ' + run_pace.toFixed(2) + ' km/hr </h4>';
 			$('.run_pace').html(run_pace_html);
 
 
-			var coin_counter_html = '<h3> Coins accumulated: </h3> <h4>' + coin_counter.toFixed(0) + ' coins </h4>';
-			$('.coin_counter').html(coin_counter_html);
+			var coin_counter_html = coin_counter.toFixed(0);
+			$('.coin_counter h3').text(coin_counter_html);
 
-			var mushroom_counter_html = '<h3> Mushrooms eaten: </h3> <h4>' + mushroom_counter.toFixed(0) + ' mushrooms </h4>';
-			$('.mushroom_counter').html(mushroom_counter_html);
+			var mushroom_counter_html = mushroom_counter.toFixed(0);
+			$('.mushroom_counter h3').text(mushroom_counter_html);
 
-			var turtle_counter_html = '<h3> Turtles passed: </h3> <h4>' + turtle_counter.toFixed(0) + ' turtles</h4>';
-			$('.turtle_counter').html(turtle_counter_html);
+			var turtle_counter_html = turtle_counter.toFixed(0);
+			$('.turtle_counter h3').text(turtle_counter_html);
 
 
 			var coins_alert_html = function(coins_alert) {
 				if (coins_alert == true) {
 					return '<img src="/assets/small_coin_moving.gif">';
 				} else {
-					return '<img/>';
+					return '<div/>';
 				}
 
 			};
@@ -173,7 +176,7 @@ function getLocation (lat_long_time_object) {
 				if (mushrooms_alert == true) {
 					return '<img src="/assets/mushroom_moving.gif">';
 				} else {
-					return '<img/>';
+					return '<div/>';
 				}
 			};
 
@@ -183,7 +186,7 @@ function getLocation (lat_long_time_object) {
 				if (turtles_alert == true) {
 					return '<img src="/assets/turtle_moving_small.gif">';
 				} else {
-					return '<img/>';
+					return '<div/>';
 				}
 			};
 
@@ -314,7 +317,7 @@ var pedometer = function() {
                 ax = event.accelerationIncludingGravity.x;
                 ay = event.accelerationIncludingGravity.y;
                 az = event.accelerationIncludingGravity.z;
-                output_xyz = "<h5> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) + "</h5>";
+                output_xyz = "<h4> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) + "</h4>";
                 
                 accel_array.push({
                     'ax': event.accelerationIncludingGravity.x,
@@ -351,11 +354,12 @@ var pedometer = function() {
 
 
     } 
-        // Printing information on screen every 0.5 seconds
-        return setInterval(function() {
-            $('.step_counter').html(step_counter);
-                    // Posting the step counter to the runs database
-        
+    // Printing information on screen every 0.5 seconds
+    return setInterval(function() {
+    	step_counter_html = '<h4>Step counter: ' + step_counter + ' steps </h4>';
+        $('.step_counter').html(step_counter_html);
+                // Posting the step counter to the runs database
+    
         $.ajax('/runs', {
             type: 'POST',
             dataType: 'json',
@@ -363,8 +367,7 @@ var pedometer = function() {
                 "run[steps]":step_counter
             }
         });
-            }, 500);
-
+    }, 500);
 
 
 };

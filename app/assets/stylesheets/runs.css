@@ -1,7 +1,26 @@
 .runpage {
-	background-color: blue;
+	background: url('/assets/run_background.png') no-repeat center center fixed;
 	width: 100%;
 	height: 100%;
+}
+
+.images {
+	position: relative;
+	padding-top: 50px
+}
+
+.runpage img {
+	width: 100px;
+	height: 100px;
+}
+
+.images h3{
+	text-align: center;
+	position: absolute;
+}
+
+.img {
+	display: inline-table;
 }
 
 .locations_views {
@@ -10,4 +29,16 @@
 
 .run_time {
 	font-size: 10px;
+}
+
+.alerts {
+	z-index: 1000;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+}
+
+.run_alert {
+	width:100%;
+	height: relative;
 }
