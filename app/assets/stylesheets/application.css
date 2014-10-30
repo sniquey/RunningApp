@@ -108,3 +108,11 @@ th { border-bottom: 1px solid #DDD; }
 	right: 11px;
 }
 
+.titleeditprofile {
+	text-align: right;
+	margin-right: 20px;
+}
+
+.edit {
+	text-align: center;
+}
