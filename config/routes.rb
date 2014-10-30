@@ -70,6 +70,7 @@ Rails.application.routes.draw do
 
   resources :locations
 
+  post '/runs/steps' => 'runs#step_update'
   resources :runs
 
   resources :levels

@@ -360,7 +360,8 @@ var pedometer = function() {
         $('.step_counter').html(step_counter_html);
                 // Posting the step counter to the runs database
     
-        $.ajax('/runs', {
+    	// can update steps without needing to know the exact run number
+        $.ajax('/runs/steps', {
             type: 'POST',
             dataType: 'json',
             data: {

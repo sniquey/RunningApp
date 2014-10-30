@@ -1,13 +1,51 @@
+.show_index {
+	background: url('/assets/index_background.png') repeat-y;
+	color: black;
+}
 .run_box {
-	height: 100px;
+	height: 110px;
 	width: 100%;
-	display: inline-table;
-	overflow: hidden;
+	display: block;
 	border: 1px solid black;
+	margin: 5px;
+	background: rgba(255, 255,51,0.8);
+}
+
+table {
+	border: none;
+	width: 70%;
+	margin: 0 auto;
+	height: 100%;
+}
+
+td {
+	cell-padding: -10px;
+}
+
+p + p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.index_img {
+	width: 25px;
+	height: 25px;
+	margin-left: 30px;
 }
 
 .run_column {
 	display: inline-table;
-	width: 40%;
+	width: 30%;
+	vertical-align: top;
 	height: 100%;
+}
+
+.run_column_longer {
+	display: inline-table;
+	width: 65%;
+	vertical-align: top;
+}
+
+.run_column span {
+	color: black;
+	font-style: bold;
 }

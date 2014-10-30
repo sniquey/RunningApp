@@ -7,9 +7,10 @@ class RunsController < ApplicationController
     show_runs = []
     current_user.runs.each do |run|
       if run.locations.length > 0
-        show_runs << run
+        show_runs.push(run)
       end
     end
+    show_runs.reverse!
 
     @runs = show_runs        #current_user.runs  #Run.all
     # raise 'params'
@@ -48,6 +49,12 @@ class RunsController < ApplicationController
       end
     end
     # redirect_to runs_path
+  end
+
+  def step_update
+    @run = current_user.runs.last
+    @run.steps = params[:step_count]
+    @run.save
   end
 
   # PATCH/PUT /runs/1
