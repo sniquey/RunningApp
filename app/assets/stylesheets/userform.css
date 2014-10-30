@@ -32,4 +32,14 @@ label {
 
 .containingeditpage {
 	background-color: #e6af17;
+	height: 100%;
+	width: 100%;
+	padding-top: 20px;
+}
+
+#submituser {
+	width: 50%;
+	position: absolute;
+	bottom: 70px;
+	margin-left: 25%;
 }

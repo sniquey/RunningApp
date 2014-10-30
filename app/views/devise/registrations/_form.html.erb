@@ -22,14 +22,6 @@
     <%= f.text_area :email %>
   </div>
   <div class="field">
-    <%= f.label :password, :class=>"profiletext" %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, :class=>"profiletext" %><br>
-    <%= f.text_field :password_confirmation %>
-  </div>
-  <div class="field">
     <%= f.label :picture, :class=>"profiletext" %><br>
     <%= f.file_field :picture %>
   </div>
@@ -41,7 +33,7 @@
     <%= f.label :dob, :class=>"profiletext" %><br>
     <%= f.date_select :dob %>
   </div>
-  <div class="actions">
+  <div class="actions" id="submituser">
     <%= f.submit %>
   </div>
 <% end %>

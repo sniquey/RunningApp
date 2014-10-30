@@ -2,7 +2,9 @@ class PagesController < ApplicationController
   def home
 	  	# coins_array = current_user.locations.select { |location| location.coin == true }
 	  	# @total_coins = coins_array.length
+		@total_coins = 0
 		@total_coins = current_user.locations.where(:coin => true).count
+		@total_mushrooms = 0
 		@total_mushrooms = current_user.locations.where(:mushroom => true).count
 
 	
@@ -34,10 +36,9 @@ class PagesController < ApplicationController
 	  			level_counter += 1
 	  		end
 	  	end
+	  	current_user.maybe_update_levels
 
-	  	current_user.level = Level.all[level_counter - 1]
-	  	@current_user.level = Level.all[level_counter - 1]
-	  	
+  	
 	  	@next_threshold = Level.all[level_counter].coin_threshold.to_f 
 	  	@coins_to_next = (@next_threshold - @total_coins).to_f
 	  	@percentage_completion = (@total_coins/@next_threshold)*100.to_f		## "%0.2f" % 

@@ -62,6 +62,7 @@ end
     # figure out how many coins the user has and which levels they need to be at
     ## whenever needed call current_user.maybe_update_levels
     # only exist wherever needed 
+    total_coins = 0
     total_coins = self.locations.where(:coin => true).count
 
     level_array = []
@@ -73,9 +74,14 @@ end
       end
     end
 
-    self.level = Level.all[level_counter - 1]
+    if total_coins == 0 
+      self.level = Level.all[level_counter]
+    else 
+      self.level = Level.all[level_counter - 1]
+    end
 
     self.save
+  # binding.pry
   end
 
   def distance_sum

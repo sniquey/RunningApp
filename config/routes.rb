@@ -65,6 +65,8 @@ Rails.application.routes.draw do
 
   get '/runs/new' => 'runs#new'
 
+  get '/users/:id' => 'pages#home'
+
 
   resources :locations
 
