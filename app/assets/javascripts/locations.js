@@ -1,13 +1,23 @@
 var startRunning = null;
 
 $(document).ready(function () {
+var start_song = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_course_clear.wav');
+var coin_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_coin.wav');
+var mushroom_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_1-up.wav'); // Power-up sound
+var end_song = new Audio('http://magicmusictutor.com/sites/default/files/Mario%20-%20Power%20Up%20Sound.mid');
+
 		var locationtracking;
 		var pedometer_tracking;
 		// If you push the START YOUR RUN button
 		startRunning = function() {
+			window.navigator.vibrate(200); // vibrate to test it is working / run is starting 
+			window.setTimeout(start_song.play(), 8000);
+
 			console.log("FUNCTION CALLED");	
+
 			console.log(locationtracking, " :Location Tracking");
 			console.log(pedometer_tracking, " :Pedometer Tracking");
+
 			// pedometer_tracking = false;
 			if ((locationtracking) && (pedometer_tracking)) {
 				console.log()
@@ -25,13 +35,19 @@ $(document).ready(function () {
 
 		// If you push the STOP TRACKING button
 		$('html').on('touchstart', '#stoprun', function () {
+
+
 			console.log('stopping!!!', locationtracking);
+
+			// Playing song
+			end_song.play();
+
 			clearInterval(locationtracking);
 			clearTimeout(pedometer_tracking);
 
 			// reset the counter and the location tracking
 			locationtracking = null;
-			// pedometer_tracking = null;
+			pedometer_tracking = null;
 			counter = 0;
 
 			// Show the map
@@ -106,25 +122,44 @@ function getLocation (lat_long_time_object) {
 				run_distance = 0;
 			}
 
-			var run_time = (Date.parse(result[resultLength - 1].created_at) - Date.parse(result[0].created_at))/1000;
+			var run_time;
+			if (resultLength > 1) {
+				run_time = (Date.parse(result[resultLength - 1].created_at) - Date.parse(result[0].created_at))/1000;
+			 } else {
+			 	run_time = 0
+			 }
+
 			var run_pace = (run_distance)/(run_time)*(3.6); // from m/s to km/hour
 
-			var coins_alert = result[resultLength-1].coin;
-			var mushrooms_alert = result[resultLength-1].mushroom;
-			var turtles_alert = result[resultLength-1].turtle;
+			var coins_alert;
+			var mushrooms_alert;
+			var turtles_alert
+			if (resultLength > 0) {
+				coins_alert = result[resultLength-1].coin;
+				mushrooms_alert = result[resultLength-1].mushroom;
+				turtles_alert = result[resultLength-1].turtle;
+			} else {
+				coins_alert = false;
+				mushrooms_alert = false;
+				turtles_alert = false;
+			}
 
 			var coins_there = function(element) {
-				return element.coin == true;
+				// vibrates phone for 2 seconds
+				window.navigator.vibrate(2000);
+				return element.coin == true
 			};
 			var coin_counter = result.filter(coins_there).length;
 
 			var mushrooms_there = function(element) {
-				return element.mushroom == true;
+				// vibrates for 200 ms, then waits 100ms then 200ms
+				navigator.vibrate([200, 100, 200]);
+				return element.mushroom == true
 			};
 			var mushroom_counter = result.filter(mushrooms_there).length;
 
 			var turtles_there = function(element) {
-				return element.turtle == true;
+				return element.turtle == true
 			};
 			var turtle_counter = result.filter(turtles_there).length;
 
@@ -171,8 +206,9 @@ function getLocation (lat_long_time_object) {
 			$('.turtle_counter h3').text(turtle_counter_html);
 
 
-			var coins_alert_html = function(coins_alert) {
+			var coins_alert_html = function(coins_alert, coin_sound) {
 				if (coins_alert == true) {
+					coin_sound.play();
 					return '<img src="/assets/small_coin_moving.gif">';
 				} else {
 					return '<div/>';
@@ -182,8 +218,9 @@ function getLocation (lat_long_time_object) {
 
 			$('.coins_alert').html(coins_alert_html(coins_alert));
 
-			var mushrooms_alert_html = function(mushrooms_alert) {
+			var mushrooms_alert_html = function(mushrooms_alert, mushroom_sound) {
 				if (mushrooms_alert == true) {
+					mushroom_sound.play();
 					return '<img src="/assets/mushroom_moving.gif">';
 				} else {
 					return '<div/>';
@@ -327,7 +364,7 @@ var pedometer = function() {
                 ax = event.accelerationIncludingGravity.x;
                 ay = event.accelerationIncludingGravity.y;
                 az = event.accelerationIncludingGravity.z;
-                output_xyz = "<h4> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) + "</h4>";
+                // output_xyz = "<h4> x: " + event.accelerationIncludingGravity.x.toFixed(1) + " y: " + event.accelerationIncludingGravity.y.toFixed(1) + " z: " + event.accelerationIncludingGravity.z.toFixed(1) + "</h4>";
                 
                 accel_array.push({
                     'ax': event.accelerationIncludingGravity.x,

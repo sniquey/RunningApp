@@ -11,7 +11,7 @@
 }
 
 .runpage img {
-	width: 100%;
+	width: 90%;
 	height: 100%;
 }
 
@@ -33,6 +33,9 @@
 	font-size: 10px;
 }
 
+.level_title {
+	text-align: right;
+}
 .alerts {
 	z-index: 1000;
 	position: absolute;
@@ -54,12 +57,13 @@
 }
 
 .homeimg {
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 }
 
 .summary_box {
 	width: 27%;
 	height: 120px;
 	display: inline-table;
+	text-align: center;
 }

@@ -24,20 +24,19 @@
 	  
 
 	<!-- <div class = "primary-block content-block levelinfo"> -->
-			<h1>Level <%= current_user.level_id %>: </h1>
-			<h2><%= current_user.level.theme %></h2>
+			<h3 class="level_title">Level <%= current_user.level_id %>: <%= current_user.level.theme %></h3>
 	<!-- </div> -->
 		<div class="summary_box">
 			<img class="homeimg" src="/assets/small_coin_moving.gif" alt="">
-			<h3> <%= @total_coins %>  </h3>
+			<h4> <%= @total_coins %>  </h4>
 		 </div>
  		<div class="summary_box">
 			<img class="homeimg " src="/assets/mushroom_moving.gif" alt="">
-			<h3> <%= @total_mushrooms %>  </h3>
+			<h4> <%= @total_mushrooms %>  </h4>
 		</div>
 		<div class="summary_box">
 			<img class="homeimg " src="/assets/turtle_moving_small.gif" alt="">
-			<h3> <%= @total_turtles %>  </h3>
+			<h4> <%= @total_turtles %>  </h4>
 		</div>
 
 	<div class="information_block">
