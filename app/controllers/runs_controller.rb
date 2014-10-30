@@ -25,6 +25,7 @@ class RunsController < ApplicationController
     @run = Run.new
     @run.user_id = current_user.id
     @run.save
+    # raise 'params'
         
   end
 
@@ -46,7 +47,7 @@ class RunsController < ApplicationController
         format.json { render json: @run.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to runs_path
+    # redirect_to runs_path
   end
 
   # PATCH/PUT /runs/1

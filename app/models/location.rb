@@ -17,10 +17,7 @@
 
 class Location < ActiveRecord::Base
 	belongs_to :run
-
-    # last_location = current_user.runs.last.locations.last
-    # @location = Location.new(location_params)
-    # @location.distance_from_last = @location.latlong - last_location.latlong
+	# belongs_to :user, through: :run
 
 	def calcDistance 	# Calculates 'distance_from_last' i.e. distance between last location and second last location
 		## Finding the current and last location
@@ -66,7 +63,7 @@ class Location < ActiveRecord::Base
 
 	def coinsPresent		
 
-		user_level = Level.first #temporary fix until current_user.level
+		user_level = self.run.user.level
 
 			lastCoinLocation = self.run.user.runs.last.locations.where(:coin => true).last
 
@@ -87,7 +84,7 @@ class Location < ActiveRecord::Base
 
 	def mushroomPresent
 
-		user_level = Level.first #temporary fix until current_user.level
+		user_level = self.run.user.level
 
 			lastMushroomLocation = self.run.user.runs.last.locations.where(:mushroom => true).last
 

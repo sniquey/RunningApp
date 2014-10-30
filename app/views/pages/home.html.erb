@@ -25,13 +25,15 @@
 
 	<div class = "primary-block content-block levelinfo">
 			<div>Level:<%= current_user.level_id %></div>
-			<div><%= @current_user.level.theme %></div>
+			<div><%= current_user.level.theme %></div>
 	</div>
-	<% raise 'params' %>
+
 	<div class = "primary-block content-block coinnum">
-			<div><img class="coin" src="assets/coin.png" alt=""></div>
+			<div><img class="coin" src="assets/small_coin_moving.gif" alt=""></div>
 			<div> <%= @total_coins %> </div> <!-- Total coins calculated -->
 	</div>
+
+
 
 	<div class="totaldistance">
 		<div class = "content-block"><strong>Total distance</strong></div>
@@ -47,7 +49,7 @@
 		<div class="meter animate">
 	<span style="width:<%= @percentage_completion.to_f %>%" ><span></span></span>
 </div>
-		<div><%= @coins_to_next %> coins till next level</div>
+		<div><%= @coins_to_next.to_i %> coins till next level</div>
 
 	</div>
 

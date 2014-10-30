@@ -31,12 +31,15 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+
   attr_accessor :current_password
   mount_uploader :picture, PictureUploader
   devise :omniauthable, :omniauth_providers => [:facebook]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_confirmation_of :password # Shouldn't Devise handle this for us?
+
 	has_many :runs
 	has_many :locations, :through => :runs # This is okay
   belongs_to :level
@@ -54,6 +57,26 @@ def defaults
     self.runs_per_week = 3
   end
 end
+
+  def maybe_update_levels
+    # figure out how many coins the user has and which levels they need to be at
+    ## whenever needed call current_user.maybe_update_levels
+    # only exist wherever needed 
+    total_coins = self.locations.where(:coin => true).count
+
+    level_array = []
+    level_counter = 0
+    Level.all.each do |level|
+      level_array << level.coin_threshold
+      if level.coin_threshold < total_coins
+        level_counter += 1
+      end
+    end
+
+    self.level = Level.all[level_counter - 1]
+
+    self.save
+  end
 
   def distance_sum
     self.locations.inject(0) {|sum, location| sum += location.distance_from_last }    
@@ -89,9 +112,7 @@ end
     return coin_count
   end
 
-  # def level
-  #   coins_accumulated = self.user_coin_count 
-  # end
+
 
 
 end

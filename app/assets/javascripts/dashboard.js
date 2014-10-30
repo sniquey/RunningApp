@@ -26,7 +26,7 @@ $(document).ready( function () {
 		}
 	});
 
-	stop.addEventListener("touchstart", pause_mario, false);
-	start.addEventListener("touchstart", play_mario, false);
+	// start.addEventListener("touchstart", play_mario, false);
+	// stop.addEventListener("touchstart", pause_mario, false);
 
 });
