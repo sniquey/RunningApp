@@ -6,10 +6,14 @@ $(document).ready(function () {
 		// If you push the START YOUR RUN button
 		startRunning = function() {
 			console.log("FUNCTION CALLED");	
-			if ((locationtracking) || (pedometer_tracking)) {
+			console.log(locationtracking, " :Location Tracking");
+			console.log(pedometer_tracking, " :Pedometer Tracking");
+			// pedometer_tracking = false;
+			if ((locationtracking) && (pedometer_tracking)) {
+				console.log()
 				return; // timer is already running.
 			}
-			// getLocation();
+
 			locationtracking = setInterval(getLocation, 2500);
 			pedometer_tracking = pedometer();
 
