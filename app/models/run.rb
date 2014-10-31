@@ -15,6 +15,7 @@
 #  coin_counter     :integer
 #  mushroom_counter :integer
 #  turtle_counter   :integer
+#  steps            :integer
 #
 
 class Run < ActiveRecord::Base
