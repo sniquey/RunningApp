@@ -1,9 +1,8 @@
+var isPlaying = true;
+
 $(document).ready( function () {
 	var mario_theme = new Audio('/assets/mario_08.wav');
-	// var stop = document.getElementById('stop-sound');
-	// var start = document.getElementById('play-sound');
-
-	var isPlaying = true;
+	console.log("played mario now hello world bitoches")
 
 	function pause_mario() {
 		mario_theme.loop = false;		
@@ -17,7 +16,8 @@ $(document).ready( function () {
 	}
 	play_mario();
 
-	$(".toggle").click(function () { // changed the class to be clicked on from 'enable-sound' to 'toggle'
+	// Delegation because ratchet.js sucks ass.
+	$('body').on('click', ".toggle", function () { // changed the class to be clicked on from 'enable-sound' to 'toggle'
 		if (isPlaying) { 
 			console.log("going to pause mario");
 			isPlaying = false;
@@ -29,7 +29,14 @@ $(document).ready( function () {
 		}
 	});
 
-	// start.addEventListener("touchstart", play_mario, false);
-	// stop.addEventListener("touchstart", pause_mario, false);
+	var showToggleState = function () {
+		if (isPlaying) {
+			$('.toggle').addClass('active');
+		} else {
+			$('.toggle').removeClass('active');
+		}
+	}
+
+	$(window).on('push', showToggleState);
 
 });

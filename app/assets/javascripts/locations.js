@@ -1,17 +1,28 @@
-var startRunning = null;
+
+var start_song = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_course_clear.wav'),
+	coin_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_coin.wav'),
+	mushroom_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_1-up.wav'), // Power-up sound
+	end_song = new Audio('http://themushroomkingdom.net/sounds/wav/smb/smb_stage_clear.wav'),
+	startRunning = null;
+
+window.coin_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_coin.wav');
+window.end_song = new Audio('http://themushroomkingdom.net/sounds/wav/smb/smb_stage_clear.wav');
+window.mushroom_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_1-up.wav');
 
 $(document).ready(function () {
-var start_song = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_course_clear.wav');
-var coin_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_coin.wav');
-var mushroom_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_1-up.wav'); // Power-up sound
-var end_song = new Audio('http://magicmusictutor.com/sites/default/files/Mario%20-%20Power%20Up%20Sound.mid');
 
 		var locationtracking;
 		var pedometer_tracking;
 		// If you push the START YOUR RUN button
 		startRunning = function() {
+			// Stop the song!
+			if (isPlaying == true) {
+				$('.toggle').click();
+			}
+
 			window.navigator.vibrate(200); // vibrate to test it is working / run is starting 
-			window.setTimeout(start_song.play(), 8000);
+			start_run_song = start_song.play();
+			// window.setTimeout(start_run_song, 8000);
 
 			console.log("FUNCTION CALLED");	
 
@@ -35,15 +46,14 @@ var end_song = new Audio('http://magicmusictutor.com/sites/default/files/Mario%2
 
 		// If you push the STOP TRACKING button
 		$('html').on('touchstart', '#stoprun', function () {
-
-
-			console.log('stopping!!!', locationtracking);
-
-			// Playing song
-			end_song.play();
-
+			window.end_song.play();
 			clearInterval(locationtracking);
 			clearTimeout(pedometer_tracking);
+
+			console.log('stopping!!!', locationtracking);
+			console.log(" STOP SOUND CALLED! ", end_song);
+			// debugger;
+			// Playing song
 
 			// reset the counter and the location tracking
 			locationtracking = null;
@@ -59,12 +69,11 @@ var end_song = new Audio('http://magicmusictutor.com/sites/default/files/Mario%2
 
 var lat,
 	lon, 
-	datetime,
-	lat_long_time_object;
+	datetime;
 
 var locations_array =[]; 
 
-function getLocation (lat_long_time_object) {
+function getLocation (coin_sound, mushroom_sound) {
 	// Check to see if the browser supports the GeoLocation API.
 	if (navigator.geolocation) {
 		console.log("Got your location.");
@@ -91,9 +100,9 @@ function getLocation (lat_long_time_object) {
 			                + currentdate.getHours() + ":"  
 			                + currentdate.getMinutes() + ":" 
 			                + currentdate.getSeconds();
-			console.log("Latitude: "+ lat);
-			console.log("Longitude: "+lon);
-			console.log("Time is " + datetime);
+			// console.log("Latitude: "+ lat);
+			// console.log("Longitude: "+lon);
+			// console.log("Time is " + datetime);
 
 			var location = {
 				"location[latitude]":lat,
@@ -205,10 +214,9 @@ function getLocation (lat_long_time_object) {
 			var turtle_counter_html = turtle_counter.toFixed(0);
 			$('.turtle_counter h3').text(turtle_counter_html);
 
-
 			var coins_alert_html = function(coins_alert, coin_sound) {
 				if (coins_alert == true) {
-					coin_sound.play();
+					window.coin_sound.play();
 					return '<img src="/assets/small_coin_moving.gif">';
 				} else {
 					return '<div/>';
@@ -220,7 +228,8 @@ function getLocation (lat_long_time_object) {
 
 			var mushrooms_alert_html = function(mushrooms_alert, mushroom_sound) {
 				if (mushrooms_alert == true) {
-					mushroom_sound.play();
+					var mushroom_sound = new Audio('http://themushroomkingdom.net/sounds/wav/smw/smw_1-up.wav'); // Power-up sound
+					window.mushroom_sound.play();
 					return '<img src="/assets/mushroom_moving.gif">';
 				} else {
 					return '<div/>';

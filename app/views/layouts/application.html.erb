@@ -110,16 +110,11 @@
               <div class="toggle-handle enable-sounds"></div>
             </div>
           </li>
-          <li class="table-view-cell media">
-            <span class="media-object pull-left icon icon-person"></span>
-            <div class="media-body">
-              Edit Profile
-            </div>
-            <div class="toggle edit">
-              <%= link_to 'Edit', edit_user_path(current_user) %> 
-            </div>
-          </li>
         </ul>
+        
+          <a href="">
+            <%= link_to( 'Edit', edit_user_path(current_user), :class => "btn btn-positive btn-block  editing_button" ) %>
+          </a>
       
           <a href="">
             <%= link_to('Logout', destroy_user_session_path, :method => :delete, :id => "logout", :class => "btn btn-positive btn-block logout") %>

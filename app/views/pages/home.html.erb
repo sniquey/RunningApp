@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="/assets/levels.css">
 <% if current_user.level_id == 1 %>
 	<div class="dashboard-level1">
@@ -40,8 +41,8 @@
 		</div>
 
 	<div class="information_block">
-		<div class = "content-block"><strong>Total distance</strong></div>
-		<div class = "content-block"> <%= @total_distance  %><div> <!-- current_user.total_distance --> </div></div> <!-- Total distance run -->
+		<div class = "content-block small_box"><strong>Total distance</strong></div>
+		<div class = "content-block big_box"> <%= @total_distance  %><div> <!-- current_user.total_distance --> </div></div> <!-- Total distance run -->
 	</div>
 
 	<div class="information_block">
