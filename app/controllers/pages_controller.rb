@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 	  	# current_user.locations.each {|location| distance_sum += location.distance_from_last }
 	  	total_distance = current_user.distance_sum.round(2)
 	  	km, mm = total_distance.divmod(1000)
-	  	@total_distance = "%d km, %d m" % [km, mm]
+	  	@total_distance = "%dkm %dm" % [km, mm]
 
 	  	run_time = 0
 	  	current_user.runs.each {|run| 
@@ -23,7 +23,7 @@ class PagesController < ApplicationController
 	  	total_time = run_time.round(2) 	# Time in seconds
 		mm, ss = total_time.divmod(60)            
 		hh, mm = mm.divmod(60)           
-		@total_time =  "%d hr, %d min, %d sec" % [hh, mm, ss]
+		@total_time =  "%d:%d:%d" % [hh, mm, ss]
 
 
 	  	# Calculating levels
