@@ -75,4 +75,16 @@
 	margin: 0 auto;
 	color: white;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	margin-bottom: 5px;
+}
+
+
+.summary_button {
+	background-color: yellow;
+	border: #5cb85c;
+	width: 95%;
+	margin: 0 auto;
+	color: white;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	margin-bottom: 5px;
 }

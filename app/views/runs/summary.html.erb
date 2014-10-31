@@ -1,0 +1,115 @@
+
+<div class="summary_page">
+
+
+	<h1>Summary page</h1>
+
+	<h4>Run time in seconds</h4>
+	<canvas id="run_time_chart" width="300" height="400"></canvas>
+
+
+	<h4>Run distance in m</h4>
+	<canvas id="run_distance_chart" width="300" height="400"></canvas>
+	    
+	<h4>Run pace in km/h </h4>
+	<canvas id="run_pace_chart" width="300" height="400"></canvas>
+	    
+
+	<h4>Run steps </h4>
+	<canvas id="run_steps_chart" width="300" height="400"></canvas>
+	    
+</div>
+
+
+
+
+
+
+<script>
+
+// Get the context of the canvas element we want to select
+var ctx = document.getElementById("run_time_chart").getContext("2d");
+
+var data = {
+    labels: [ "<%== @run_labels.join('", "') %>" ],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [<%= @run_total_time.join(', ') %>]
+        }
+    ]
+};
+
+var myLineChart = new Chart(ctx).Line(data);
+
+
+var ctx_2 = document.getElementById("run_distance_chart").getContext("2d");
+
+var data = {
+    labels: [ "<%== @run_labels.join('", "') %>" ],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [<%= @run_total_distance.join(', ') %>]
+        }
+    ]
+};
+
+var myLineChart = new Chart(ctx_2).Line(data);
+
+
+var ctx_3 = document.getElementById("run_pace_chart").getContext("2d");
+
+var data = {
+    labels: [ "<%== @run_labels.join('", "') %>" ],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [<%= @run_pace.join(', ') %>]
+        }
+    ]
+};
+
+var myLineChart = new Chart(ctx_3).Line(data);
+
+
+var ctx_4 = document.getElementById("run_steps_chart").getContext("2d");
+
+var data = {
+    labels: [ "<%== @run_labels.join('", "') %>" ],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [<%= @run_steps.join(', ') %>]
+        }
+    ]
+};
+
+var myLineChart = new Chart(ctx_4).Line(data);
+
+
+</script>

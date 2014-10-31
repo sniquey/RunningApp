@@ -2,7 +2,6 @@ var isPlaying = true;
 
 $(document).ready( function () {
 	var mario_theme = new Audio('/assets/mario_08.wav');
-	console.log("played mario now hello world bitoches")
 
 	function pause_mario() {
 		mario_theme.loop = false;		

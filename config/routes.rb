@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
   get '/users/:id' => 'pages#home'
 
+  get '/summary' => 'runs#summary'
 
   resources :locations
 
