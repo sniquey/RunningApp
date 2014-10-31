@@ -24,6 +24,9 @@
 	position: absolute;
 }
 
+.history {
+	text-align: right;
+}
 
 .locations_views {
 	font-size: 10px;

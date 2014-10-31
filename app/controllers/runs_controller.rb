@@ -37,12 +37,12 @@ class RunsController < ApplicationController
       run_date = run.locations.first.created_at.strftime('%B %d, %Y')
       @run_date << run_date
       @run_labels << " "
-      run_time = (run.locations.last.created_at - run.locations.first.created_at)
-      run_distance = run.locations.last.cumulative_distance
+      run_time = (run.locations.last.created_at - run.locations.first.created_at).abs
+      run_distance = (run.locations.last.cumulative_distance).abs
       @run_total_time << run_time
       @run_total_distance << run_distance
 
-      run_pace = ( run_distance / run_time )*3.6
+      run_pace = (( run_distance / run_time )*3.6).abs
       if run_pace.nan?
         run_pace = 0
       end
