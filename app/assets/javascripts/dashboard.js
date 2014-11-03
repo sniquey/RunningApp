@@ -1,3 +1,4 @@
+
 var isPlaying = true;
 
 $(document).ready( function () {
