@@ -112,17 +112,11 @@
           </li>
         </ul>
         
-          <a href="">
             <%= link_to( 'Edit', edit_user_path(current_user), :class => "btn btn-positive btn-block  editing_button" ) %>
-          </a>
       
-          <a href="">
-            <%= link_to( 'History', summary_path, :class => "btn btn-positive btn-block  summary_button" ) %>
-          </a>
+            <%= link_to( 'History', summary_path, :class => "btn btn-positive btn-block summary_button" ) %>
 
-          <a href="">
             <%= link_to('Logout', destroy_user_session_path, :method => :delete, :id => "logout", :class => "btn btn-positive btn-block logout") %>
-          </a>
         </div>
         <% end %>
       </div>
@@ -130,9 +124,10 @@
 
 
     </div>
-<!-- <script type="text/javascript" src="/assets/dashboard.js"></script> -->
+
 
 </body>
+
 </html>
 
 

@@ -48,16 +48,16 @@ class User < ActiveRecord::Base
 
   after_initialize :defaults
 
-def defaults
-   unless persisted?
-    self.level_id = 1
-    self.total_lives = 3
-    self.avatar = ""
-    self.height = 1.70
-    self.dob = Date.parse("11/11/1990")
-    self.runs_per_week = 3
+  def defaults
+     unless persisted?
+      self.level_id = 1
+      self.total_lives = 3
+      self.avatar = ""
+      self.height = 1.70
+      self.dob = Date.parse("11/11/1990")
+      self.runs_per_week = 3
+    end
   end
-end
 
   def maybe_update_levels
     # figure out how many coins the user has and which levels they need to be at
@@ -118,8 +118,6 @@ end
     end
     return coin_count
   end
-
-
 
 
 end

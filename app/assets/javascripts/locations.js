@@ -19,7 +19,7 @@ $(document).ready(function() {
             $('.toggle').click();
         }
 
-        window.navigator.vibrate(200); // vibrate to test it is working / run is starting 
+        // window.navigator.vibrate(200); // vibrate to test it is working / run is starting 
         start_run_song = start_song.play();
 
         if ((locationtracking) && (pedometer_tracking)) {
@@ -122,14 +122,14 @@ function getLocation(coin_sound, mushroom_sound) {
 
                 var coins_there = function(element) {
                     // vibrates phone for 2 seconds
-                    window.navigator.vibrate(2000);
+                    // window.navigator.vibrate(2000);
                     return element.coin == true
                 };
                 var coin_counter = result.filter(coins_there).length;
 
                 var mushrooms_there = function(element) {
                     // vibrates for 200 ms, then waits 100ms then 200ms
-                    navigator.vibrate([200, 100, 200]);
+                    // navigator.vibrate([200, 100, 200]);
                     return element.mushroom == true
                 };
                 var mushroom_counter = result.filter(mushrooms_there).length;
