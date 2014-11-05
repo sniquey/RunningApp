@@ -114,8 +114,6 @@
         
             <%= link_to( 'Edit', edit_user_path(current_user), :class => "btn btn-positive btn-block  editing_button" ) %>
       
-            <%= link_to( 'History', summary_path, :class => "btn btn-positive btn-block summary_button" ) %>
-
             <%= link_to('Logout', destroy_user_session_path, :method => :delete, :id => "logout", :class => "btn btn-positive btn-block logout") %>
         </div>
         <% end %>

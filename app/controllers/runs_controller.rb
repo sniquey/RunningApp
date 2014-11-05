@@ -17,44 +17,6 @@ class RunsController < ApplicationController
 
   end
 
-  # Run summary using charts
-  def summary
-    @runs = []
-    current_user.runs.each do |run|
-      if run.locations.length > 0
-        @runs << run
-      end
-    end
-
-    @run_labels = []
-    @run_date = []
-    @run_total_time = []
-    @run_total_distance = []
-    @run_pace = []
-    @run_steps = []
-
-    @runs.each do |run|
-      run_date = run.locations.first.created_at.strftime('%B %d, %Y')
-      @run_date << run_date
-      @run_labels << " "
-      run_time = (run.locations.last.created_at - run.locations.first.created_at).abs
-      run_distance = (run.locations.last.cumulative_distance).abs
-      @run_total_time << run_time
-      @run_total_distance << run_distance
-
-      run_pace = (( run_distance / run_time )*3.6).abs
-      if run_pace.nan?
-        run_pace = 0
-      end
-
-      @run_pace << run_pace
-      @run_steps << run.steps
-    end
-
-    # binding.pry
-
-  end
-
   def show
 
   end

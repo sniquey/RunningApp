@@ -67,8 +67,6 @@ Rails.application.routes.draw do
 
   get '/users/:id' => 'pages#home'
 
-  get '/summary' => 'runs#summary'
-
   resources :locations
 
   post '/runs/steps' => 'runs#step_update'
