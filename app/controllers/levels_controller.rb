@@ -25,6 +25,7 @@ class LevelsController < ApplicationController
   # POST /levels.json
   def create
     @level = Level.new(level_params)
+    
 
     respond_to do |format|
       if @level.save

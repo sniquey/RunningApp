@@ -363,7 +363,7 @@ var pedometer = function() {
     }
     // Printing information on screen every 0.5 seconds
     return setInterval(function() {
-        step_counter_html = '<h4>Step counter: ' + step_counter + ' steps </h4>';
+        step_counter_html = '<h4>Pedometer: ' + step_counter + ' steps </h4>';
         $('.step_counter').html(step_counter_html);
         // Posting the step counter to the runs database
 
